@@ -2,7 +2,6 @@ package gr.newbies.qrwedding.services;
 
 import gr.newbies.qrwedding.repositories.GRepository;
 import java.util.List;
-import java.util.UUID;
 import javax.transaction.Transactional;
 
 public abstract class GeneralServiceImpl<E> 
@@ -16,13 +15,7 @@ public abstract class GeneralServiceImpl<E>
     @Transactional
     @Override
     public E create(E entity) {
-        System.out.println("before");
-        E e = (E)repository.save(entity);
-        System.out.println("after");
-        System.out.println("->" + e.toString());
-        System.out.println("is it here?");
-//        return (E)repository.save(entity);
-        return null;
+        return (E)repository.save(entity);
     }
     
     @Transactional
