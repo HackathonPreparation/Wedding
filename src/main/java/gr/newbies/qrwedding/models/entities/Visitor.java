@@ -2,6 +2,7 @@ package gr.newbies.qrwedding.models.entities;
 
 import gr.newbies.qrwedding.extras.Status;
 import gr.newbies.qrwedding.models.dtos.VisitorCreationDTO;
+import org.json.simple.JSONObject;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -57,5 +58,15 @@ public class Visitor extends GenericModel implements Serializable {
 
     public int getTable_reg() {
         return table_reg;
-    }  
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("uuid",uuid);
+        json.put("name",name);
+        json.put("event_id",event_id);
+        json.put("status",status);
+        json.put("table_reg",table_reg);
+        return json;
+    }
 }

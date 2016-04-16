@@ -5,15 +5,14 @@ import gr.newbies.qrwedding.models.dtos.EventCreationDTO;
 import gr.newbies.qrwedding.models.dtos.EventUpdateDTO;
 import gr.newbies.qrwedding.models.entities.Event;
 import gr.newbies.qrwedding.services.EventService;
+import gr.newbies.qrwedding.services.VisitorService;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/event")
@@ -21,6 +20,9 @@ public class EventController extends BaseController{
 
     @Autowired
     EventService eventService;
+
+    @Autowired
+    VisitorService visitorService;
 
     @RequestMapping(value = "/new",method = RequestMethod.POST)
     public ResponseEntity<JSONObject> NewEvent (@RequestBody EventCreationDTO dto){
@@ -46,18 +48,16 @@ public class EventController extends BaseController{
     }
 
     @RequestMapping(value = "/{uuid:^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}",method = RequestMethod.GET)
-    public HttpEntity GetEvent (){
-        //todo return event + list of visitors with event_uuid = event.uuid
-        throw new UnsupportedOperationException("soonish");
-    }
-
-    @RequestMapping(value = "/test")
-    public HttpEntity test (){
-        for (Event e: eventService.findAll()) {
-            System.out.println(e.getName());
-            System.out.println(e.getUuid());
-            System.out.println("\n");
+    public HttpEntity<JSONObject> GetEvent (@PathVariable String uuid){
+        JSONArray jsonArray = visitorService.findVisitorsByEventId(uuid);
+        Event e = eventService.findOne(uuid);
+        if (e == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity(HttpStatus.OK);
+        JSONObject json = new JSONObject();
+        json = e.toJson();
+        json.put("visitors",jsonArray);
+        System.out.println(json.toString());
+        return new ResponseEntity<>(json,HttpStatus.OK);
     }
 }
