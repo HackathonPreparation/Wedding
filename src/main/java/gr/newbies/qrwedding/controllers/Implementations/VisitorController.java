@@ -11,8 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-
 @RestController
 @RequestMapping("/visitor")
 public class VisitorController extends BaseController{
@@ -32,7 +30,7 @@ public class VisitorController extends BaseController{
     }
 
     @RequestMapping(value = "/{uuid:^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}",method = RequestMethod.GET)
-    public HttpEntity<String> GetEvent (@PathVariable UUID uuid){
+    public HttpEntity<String> GetEvent (@PathVariable String uuid){
         Visitor v = visitorService.findOne(uuid);
         if (v != null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

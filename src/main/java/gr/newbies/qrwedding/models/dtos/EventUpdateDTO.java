@@ -1,14 +1,12 @@
 package gr.newbies.qrwedding.models.dtos;
 
-import java.util.UUID;
-
 public class EventUpdateDTO {
     private int Seats;
-    private UUID uuid;
+    private String uuid;
     private String name;
     private String comment;
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
     }
 

@@ -1,6 +1,5 @@
 package gr.newbies.qrwedding.models.entities;
 
-import java.util.UUID;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -10,9 +9,9 @@ import javax.persistence.MappedSuperclass;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class GenericModel {            
     @Id
-    UUID uuid;
+    String uuid;
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
     }
 }

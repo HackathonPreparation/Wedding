@@ -7,9 +7,9 @@ public interface GeneralService<E> {
     
     E create(E entity);
     
-    E findOne(UUID uuid);
+    E findOne(String uuid);
     
     List<E> findAll();
 
-    boolean delete(UUID uuid);
+    boolean delete(String uuid);
 }

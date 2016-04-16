@@ -26,7 +26,7 @@ public class Event extends GenericModel implements Serializable {
     private String comments;
 
     public Event(EventCreationDTO eventCreationDTO){
-        uuid = UUID.randomUUID();
+        uuid = UUID.randomUUID().toString();
         name = eventCreationDTO.getName();
         comments = eventCreationDTO.getComment();
         tables_count = 1; 
