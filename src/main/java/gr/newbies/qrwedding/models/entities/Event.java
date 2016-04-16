@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @NamedQueries({
         @NamedQuery(name = "Event.findEventByUUID", query = "SELECT p FROM Event p WHERE p.uuid = ?1"),
-        @NamedQuery(name = "Event.updateEventByUUID", query = "UPDATE Event p SET p.tables_count = ?2,p.tables_left = ?3,p.name = ?4, p.comments = ?5 WHERE p.uuid = ?1")
+        @NamedQuery(name = "Event.updateEventByUUID", query = "UPDATE Event p SET p.tables_count = ?1, p.tables_left = ?2, p.name = ?3, p.comments = ?4 WHERE p.uuid = ?5")
 })
 @Entity
 @Table(name = "events")
@@ -26,7 +26,7 @@ public class Event extends GenericModel implements Serializable {
     private int tables_count;
     
     @Column(name = "tables_left")
-    private int table_left;
+    private int tables_left;
     
     @Column(name = "comments")
     private String comments;
@@ -36,7 +36,7 @@ public class Event extends GenericModel implements Serializable {
         name = eventCreationDTO.getName();
         comments = eventCreationDTO.getComment();
         tables_count = 1;
-        table_left = tables_count;
+        tables_left = tables_count;
     }
 
     public Event(){
@@ -51,8 +51,8 @@ public class Event extends GenericModel implements Serializable {
         return tables_count;
     }
 
-    public int getTable_left() {
-        return table_left;
+    public int getTables_left() {
+        return tables_left;
     }
 
     public String getComments() {

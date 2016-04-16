@@ -98,6 +98,12 @@
             <type>jar</type>
         </dependency>
         
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        
         <!--QR ByGooglie -->
         <dependency>
             <groupId>com.google.zxing</groupId>
@@ -142,7 +148,7 @@
             <artifactId>postgresql</artifactId>
             <version>9.2-1002.jdbc4</version>
         </dependency>
-
+        
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
@@ -164,11 +170,6 @@
             <version>1.8.9</version>
         </dependency>
         
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
         
     </dependencies>
 </project>
