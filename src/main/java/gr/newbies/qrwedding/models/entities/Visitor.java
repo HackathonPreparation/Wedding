@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Visitor extends GenericModel implements Serializable {
 
     @Column(name = "event_id")
-    private UUID event_uuid;
+    private UUID event_id;
     
     @Column(name = "name")
     private String name;
@@ -25,12 +25,15 @@ public class Visitor extends GenericModel implements Serializable {
     @Column(name ="table_reg")
     private int table_reg;
 
+    public Visitor() {
+    }
+
     //TODO QR IMAGE PATH
 
     public Visitor(VisitorCreationDTO visitorCreationDTO){
         uuid = UUID.randomUUID();
         name = visitorCreationDTO.getName();
-        event_uuid = visitorCreationDTO.getEventUUID();
+        event_id = visitorCreationDTO.getEventUUID();
         //TODO create QR here
     }
 
@@ -38,8 +41,8 @@ public class Visitor extends GenericModel implements Serializable {
         return name;
     }
 
-    public UUID getEvent_uuid() {
-        return event_uuid;
+    public UUID getEvent_id() {
+        return event_id;
     }
 
     public Status getStatus() {

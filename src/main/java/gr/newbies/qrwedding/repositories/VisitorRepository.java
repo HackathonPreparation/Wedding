@@ -8,6 +8,6 @@ import java.util.UUID;
 
 @Repository
 public interface VisitorRepository extends GRepository<Visitor>{
-    Visitor findByUuid(UUID uuid);
-    List<Visitor> findByEventUuid(UUID event_uuid);
+//    Visitor findByUuid(UUID uuid);
+//    List<Visitor> findByEvent_id(UUID event_uuid);
 }
