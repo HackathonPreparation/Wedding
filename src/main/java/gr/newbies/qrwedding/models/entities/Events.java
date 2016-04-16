@@ -6,10 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author SoUlKeePeR
- */
 @Entity
 @Table(name = "events")
 public class Events implements Serializable {
