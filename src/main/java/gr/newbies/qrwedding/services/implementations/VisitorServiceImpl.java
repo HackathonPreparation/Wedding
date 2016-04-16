@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class VisitorServiceImpl extends GeneralServiceImpl<Visitor, 
-        VisitorCreationDTO, VisitorUpdateDTO> implements VisitorService{
+public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
+        implements VisitorService{
     
     @Autowired
     private VisitorRepository visitorRepository;
@@ -19,4 +19,15 @@ public class VisitorServiceImpl extends GeneralServiceImpl<Visitor,
     VisitorServiceImpl(){
         repository = visitorRepository;
     }   
+    @Override
+    public Visitor create(VisitorCreationDTO visitorCreationDTO) {
+        super.create(new Visitor());
+        return new Visitor();
+    }
+    
+    @Override
+    public boolean update(VisitorUpdateDTO visitorUpdateDTO){
+        super.update(new Visitor(),new Visitor());
+        return true;
+    }
 }

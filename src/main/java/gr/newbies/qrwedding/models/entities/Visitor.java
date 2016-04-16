@@ -10,10 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "visitors")
 public class Visitor extends GenericModel implements Serializable {
-    
-    @Column(name = "uuid")
-    private UUID uuid;
-    
+
     @Column(name = "event_id")
     private Long event_id;
     
@@ -25,11 +22,7 @@ public class Visitor extends GenericModel implements Serializable {
     
     @Column(name ="table_reg")
     private int table_reg;
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
+    
     public Long getEvent_id() {
         return event_id;
     }
