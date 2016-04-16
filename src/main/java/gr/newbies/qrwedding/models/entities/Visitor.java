@@ -2,6 +2,7 @@ package gr.newbies.qrwedding.models.entities;
 
 import gr.newbies.qrwedding.extras.Status;
 import java.io.Serializable;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 public class Visitor extends GenericModel implements Serializable {
     
     @Column(name = "uuid")
-    private String uuid;
+    private UUID uuid;
     
     @Column(name = "event_id")
     private Long event_id;
@@ -25,7 +26,7 @@ public class Visitor extends GenericModel implements Serializable {
     @Column(name ="table_reg")
     private int table_reg;
 
-    public String getUuid() {
+    public UUID getUuid() {
         return uuid;
     }
 
