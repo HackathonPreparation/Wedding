@@ -2,7 +2,6 @@ package gr.newbies.qrwedding.services;
 
 import gr.newbies.qrwedding.repositories.GRepository;
 import java.util.List;
-import java.util.UUID;
 import javax.transaction.Transactional;
 
 public abstract class GeneralServiceImpl<E> 

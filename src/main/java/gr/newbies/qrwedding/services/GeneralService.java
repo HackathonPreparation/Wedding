@@ -1,7 +1,6 @@
 package gr.newbies.qrwedding.services;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface GeneralService<E> {    
     
