@@ -19,7 +19,7 @@ public class Event extends GenericModel implements Serializable {
     @Column(name = "tables_count")
     private int tables_count;
     
-    @Column(name = "table_left")
+    @Column(name = "tables_left")
     private int table_left;
     
     @Column(name = "comments")

@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public interface GeneralService<E,DC, DU > {    
     
-     boolean create(DC eventCreationDTO);
+    boolean create(DC eventCreationDTO);
     
     E findOne(UUID uuid);
     

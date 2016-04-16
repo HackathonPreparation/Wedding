@@ -4,10 +4,6 @@ import gr.newbies.qrwedding.models.dtos.EventCreationDTO;
 import gr.newbies.qrwedding.models.dtos.EventUpdateDTO;
 import gr.newbies.qrwedding.models.entities.Event;
 
-/**
- *
- * @author SoUlKeePeR
- */
 public interface EventService extends GeneralService<Event, 
         EventCreationDTO,EventUpdateDTO>{
 
