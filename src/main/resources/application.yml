@@ -1,0 +1,13 @@
+## YAML Template.
+---
+spring: 
+    application:
+        name: QRWedding
+        
+    datasource:
+            driverClassName: org.postgresql.Driver
+            url: jdbc:postgresql://83.212.105.54:5432/qrwedding
+            username: admin
+            password: Tech2015
+
+            initialize: false
