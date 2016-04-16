@@ -54,7 +54,7 @@ public class EventController extends BaseController{
         if (e == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        JSONObject json = new JSONObject();
+        JSONObject json;
         json = e.toJson();
         json.put("visitors",jsonArray);
         System.out.println(json.toString());
