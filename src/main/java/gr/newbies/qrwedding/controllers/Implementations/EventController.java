@@ -44,9 +44,20 @@ public class EventController extends BaseController{
         }
     }
 
-    @RequestMapping(value = "/{uuid}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{uuid:^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}",method = RequestMethod.GET)
     public HttpEntity GetEvent (){
         //todo return event + list of visitors with event_uuid = event.uuid
         throw new UnsupportedOperationException("soonish");
+    }
+
+    @RequestMapping(value = "/test")
+    public HttpEntity test (){
+        for (Event e: eventService.findAll()) {
+            System.out.println(e.getName());
+            System.out.println(e.getUuid());
+            System.out.println("\n");
+        }
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

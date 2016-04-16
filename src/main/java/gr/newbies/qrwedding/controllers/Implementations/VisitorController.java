@@ -1,5 +1,6 @@
 package gr.newbies.qrwedding.controllers.Implementations;
 
+import com.sun.deploy.net.HttpResponse;
 import gr.newbies.qrwedding.controllers.BaseController;
 import gr.newbies.qrwedding.models.dtos.VisitorCreationDTO;
 import gr.newbies.qrwedding.models.entities.Visitor;
@@ -9,10 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/visitor")
@@ -32,9 +32,14 @@ public class VisitorController extends BaseController{
         }
     }
 
-    @RequestMapping(value = "/{uuid}",method = RequestMethod.GET)
-    public HttpEntity GetEvent (){
-        //todo return visitor data with uuid = uuid
-        throw new UnsupportedOperationException("soonish");
+    @RequestMapping(value = "/{uuid:^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}",method = RequestMethod.GET)
+    public HttpEntity<Visitor> GetEvent (@PathVariable UUID uuid){
+        Visitor v = visitorService.findOne(uuid);
+        if (v != null){
+            return new ResponseEntity<>(v, HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
