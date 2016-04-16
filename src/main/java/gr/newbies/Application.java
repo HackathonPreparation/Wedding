@@ -25,7 +25,7 @@ public class Application extends SpringBootServletInitializer {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/endProg/sessionter").allowedOrigins("http://localhost:9000");
+                registry.addMapping("/event/new").allowedOrigins("http://83.212.105.54:8080");
             }
         };
     }
