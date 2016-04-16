@@ -1,10 +1,8 @@
 package gr.newbies.qrwedding.controllers.Implementations;
 
-import com.sun.deploy.net.HttpResponse;
 import gr.newbies.qrwedding.controllers.BaseController;
 import gr.newbies.qrwedding.models.dtos.VisitorCreationDTO;
 import gr.newbies.qrwedding.models.entities.Visitor;
-import gr.newbies.qrwedding.services.EventService;
 import gr.newbies.qrwedding.services.VisitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
