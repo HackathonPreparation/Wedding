@@ -10,7 +10,7 @@ CREATE TABLE "events" (
     "name" text NOT NULL,
     "tables_count" INT NOT NULL CHECK (tables_count > 0), --fix (12) number of seats on each table
     "tables_left" INT NOT NULL, --to save complex queries
-    "comments" text NOT NULL,
+    "comments" text NOT NULL, --wedding info
     CONSTRAINT pk_event PRIMARY KEY (id),
     CONSTRAINT uniq_event_uuid UNIQUE (uuid)
 );
