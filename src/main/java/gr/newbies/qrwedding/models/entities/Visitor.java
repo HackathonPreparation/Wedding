@@ -7,9 +7,15 @@ import java.io.Serializable;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Visitor.findVisitorByUUID", query = "SELECT p FROM Visitor p WHERE p.uuid = ?1"),
+    @NamedQuery(name = "Visitor.findVisitorsByEventUUID", query = "SELECT p FROM Visitor p WHERE p.event_id = ?1")
+})
 @Table(name = "visitors")
 public class Visitor extends GenericModel implements Serializable {
 
