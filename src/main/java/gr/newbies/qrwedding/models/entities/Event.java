@@ -8,7 +8,6 @@ import java.util.UUID;
 
 @NamedQueries({
         @NamedQuery(name = "Event.findEventByUUID", query = "SELECT p FROM Event p WHERE p.uuid = ?1"),
-        @NamedQuery(name = "Event.updateEventByUUID", query = "UPDATE Event p SET p.tables_count = ?1, p.tables_left = ?2, p.name = ?3, p.comments = ?4 WHERE p.uuid = ?5")
 })
 @Entity
 @Table(name = "events")
@@ -30,7 +29,7 @@ public class Event extends GenericModel implements Serializable {
         uuid = UUID.randomUUID();
         name = eventCreationDTO.getName();
         comments = eventCreationDTO.getComment();
-        tables_count = 1;
+        tables_count = 1; 
         tables_left = tables_count;
     }
 
