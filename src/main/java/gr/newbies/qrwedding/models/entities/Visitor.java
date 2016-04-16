@@ -4,14 +4,11 @@ import gr.newbies.qrwedding.extras.Status;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "visitors")
-public class Visitor implements Serializable {
-    @Id
-    private Long id;
+public class Visitor extends GenericModel implements Serializable {
     
     @Column(name = "uuid")
     private String uuid;
@@ -27,10 +24,6 @@ public class Visitor implements Serializable {
     
     @Column(name ="table_reg")
     private int table_reg;
-
-    public Long getId() {
-        return id;
-    }
 
     public String getUuid() {
         return uuid;

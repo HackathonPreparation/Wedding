@@ -1,9 +1,10 @@
 package gr.newbies.qrwedding.services;
 
-/**
- *
- * @author SoUlKeePeR
- */
-public interface VisitorService {
-    
+import gr.newbies.qrwedding.models.dtos.VisitorCreationDTO;
+import gr.newbies.qrwedding.models.dtos.VisitorUpdateDTO;
+import gr.newbies.qrwedding.models.entities.Visitor;
+
+public interface VisitorService extends GeneralService<Visitor, 
+        VisitorCreationDTO, VisitorUpdateDTO>{
+
 }
