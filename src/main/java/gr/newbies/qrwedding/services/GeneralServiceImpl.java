@@ -22,7 +22,7 @@ public abstract class GeneralServiceImpl<E>
     @Transactional
     @Override
     public E findOne(UUID uuid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (E)repository.findOne(uuid);
     }
 
     @Transactional
@@ -34,6 +34,7 @@ public abstract class GeneralServiceImpl<E>
     @Transactional
     @Override
     public boolean delete(UUID uuid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        repository.delete(uuid);
+        return true;
     }
 }
