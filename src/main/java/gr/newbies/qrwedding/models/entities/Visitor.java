@@ -27,7 +27,7 @@ public class Visitor extends GenericModel implements Serializable {
     private String name;
     
     @Column(name = "status")
-    private Status status;
+    private String status;
     
     @Column(name ="table_reg")
     private int table_reg;
@@ -52,7 +52,7 @@ public class Visitor extends GenericModel implements Serializable {
         return event_id;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
