@@ -7,10 +7,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
+@Entity
 @NamedQueries({
         @NamedQuery(name = "Event.findEventByUUID", query = "SELECT p FROM Event p WHERE p.uuid = ?1"),
 })
-@Entity
 @Table(name = "events")
 public class Event extends GenericModel implements Serializable {
 

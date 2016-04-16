@@ -35,12 +35,13 @@ public class VisitorController extends BaseController{
         if (v != null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        Status status  = v.getStatus();
-        if (status == Status.PENDING || status == Status.DECLINDED){
-            return new ResponseEntity<>(status.toString(),HttpStatus.OK);
-        }
-        else {
-            return new ResponseEntity<>(v.toString(),HttpStatus.OK);
-        }
+        return new ResponseEntity<>(HttpStatus.OK);
+//        Status status  = v.getStatus();
+//        if (status == Status.PENDING || status == Status.DECLINDED){
+//            return new ResponseEntity<>(status.toString(),HttpStatus.OK);
+//        }
+//        else {
+//            return new ResponseEntity<>(v.toString(),HttpStatus.OK);
+//        }
     }
 }
