@@ -3,14 +3,11 @@ package gr.newbies.qrwedding.models.entities;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "events")
-public class Event implements Serializable {
-    @Id
-    private Long id;
+public class Event extends GenericModel implements Serializable {
     
     @Column (name = "uuid")
     private String uuid;
@@ -26,10 +23,6 @@ public class Event implements Serializable {
     
     @Column(name = "comments")
     private String comments;
-
-    public Long getId() {
-        return id;
-    }
 
     public String getUuid() {
         return uuid;
