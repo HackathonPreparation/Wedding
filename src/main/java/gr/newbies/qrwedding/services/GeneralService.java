@@ -3,15 +3,15 @@ package gr.newbies.qrwedding.services;
 import java.util.List;
 import java.util.UUID;
 
-public interface GeneralService<E,DC, DU > {    
+public interface GeneralService<E> {    
     
-    boolean create(DC eventCreationDTO);
+    E create(E entity);
     
     E findOne(UUID uuid);
     
     List<E> findAll();
         
-    boolean update(DU eventUpdateDTO);
+    boolean update(E oldEntity,E newEntity);
     
     boolean delete(UUID uuid);
 }

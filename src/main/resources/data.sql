@@ -5,7 +5,6 @@ DROP TYPE status;
 CREATE TYPE status AS ENUM ('PENDING','ACCEPTED','DECLINED');
 
 CREATE TABLE "events" (
-    "id" bigint NOT NULL,
     "uuid" text NOT NULL,
     "name" text NOT NULL,
     "tables_count" INT NOT NULL CHECK (tables_count > 0), --fix (12) number of seats on each table
@@ -16,7 +15,6 @@ CREATE TABLE "events" (
 );
 
 CREATE TABLE "visitors" (
-    "id" bigint NOT NULL,
     "uuid" text NOT NULL,
     "event_id" bigint NOT NULL,
     "name" text NOT NULL,

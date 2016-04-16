@@ -31,7 +31,6 @@ public class EventController extends BaseController{
         List<Event> l = eventService.findAll();
         for(Event vLookUp:l){
             System.out.println(vLookUp.getComments());
-            System.out.println(vLookUp.getId());
             System.out.println(vLookUp.getName());
             System.out.println(vLookUp.getTable_left());
             System.out.println(vLookUp.getTables_count());

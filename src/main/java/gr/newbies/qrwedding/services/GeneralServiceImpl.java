@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.UUID;
 import javax.transaction.Transactional;
 
-public abstract class GeneralServiceImpl<E, DC, DU> 
-        implements GeneralService<E, DC, DU>{
+public abstract class GeneralServiceImpl<E> 
+        implements GeneralService<E>{
     
     protected GRepository repository;
     
@@ -15,8 +15,8 @@ public abstract class GeneralServiceImpl<E, DC, DU>
     
     @Transactional
     @Override
-    public boolean create(DC dc) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public E create(E entity) {
+        return (E)repository.save(this);
     }
     
     @Transactional
@@ -33,7 +33,7 @@ public abstract class GeneralServiceImpl<E, DC, DU>
 
     @Transactional
     @Override
-    public boolean update(DU eventUpdateDTO) {
+    public boolean update(E oldEntity, E newEntity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
