@@ -21,7 +21,7 @@ public abstract class GeneralServiceImpl<E>
     
     @Transactional
     @Override
-    public E findOne(UUID uuid) {
+    public E findOne(String uuid) {
         return (E)repository.findOne(uuid);
     }
 
@@ -33,7 +33,7 @@ public abstract class GeneralServiceImpl<E>
 
     @Transactional
     @Override
-    public boolean delete(UUID uuid) {
+    public boolean delete(String uuid) {
         repository.delete(uuid);
         return true;
     }

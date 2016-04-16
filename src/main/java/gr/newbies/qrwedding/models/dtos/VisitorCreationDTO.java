@@ -1,16 +1,14 @@
 package gr.newbies.qrwedding.models.dtos;
 
-import java.util.UUID;
-
 public class VisitorCreationDTO {
     private String name;
-    private UUID eventUUID;
+    private String eventUUID;
 
     public String getName() {
         return name;
     }
 
-    public UUID getEventUUID() {
+    public String getEventUUID() {
         return eventUUID;
     }
 }
