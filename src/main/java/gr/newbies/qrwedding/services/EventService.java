@@ -3,14 +3,12 @@ package gr.newbies.qrwedding.services;
 import gr.newbies.qrwedding.models.dtos.EventCreationDTO;
 import gr.newbies.qrwedding.models.dtos.EventUpdateDTO;
 import gr.newbies.qrwedding.models.entities.Event;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
-/**
- *
- * @author SoUlKeePeR
- */
 public interface EventService {
-    boolean create(EventCreationDTO eventCreationDTO);
+    void create(EventCreationDTO eventCreationDTO);
     
     Event findOne(String uuid);
     
@@ -19,4 +17,9 @@ public interface EventService {
     boolean update(EventUpdateDTO eventUpdateDTO);
     
     boolean delete(String uuid);
+
+    public long getNextID();
+
+    @Transactional
+    long getCount();
 }

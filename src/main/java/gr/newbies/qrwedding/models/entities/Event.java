@@ -1,6 +1,9 @@
 package gr.newbies.qrwedding.models.entities;
 
+import gr.newbies.qrwedding.models.dtos.EventCreationDTO;
+
 import java.io.Serializable;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,7 +16,7 @@ public class Event implements Serializable {
     private Long id;
     
     @Column (name = "uuid")
-    private String uuid;
+    private UUID uuid;
     
     @Column(name = "name")
     private String name;
@@ -27,11 +30,22 @@ public class Event implements Serializable {
     @Column(name = "comments")
     private String comments;
 
+    public Event(long id, UUID uuid, EventCreationDTO dto){
+        this(id,uuid,dto.getName(),dto.getComment());
+    }
+
+    public Event(long id, UUID uuid,String name,String comment){
+        this.id = id;
+        this.uuid = uuid;
+        this.name = name;
+        this.comments = comment;
+    }
+
     public Long getId() {
         return id;
     }
 
-    public String getUuid() {
+    public UUID getUuid() {
         return uuid;
     }
 
