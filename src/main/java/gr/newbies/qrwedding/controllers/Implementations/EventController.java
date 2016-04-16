@@ -5,6 +5,7 @@ import gr.newbies.qrwedding.models.dtos.EventCreationDTO;
 import gr.newbies.qrwedding.models.dtos.EventUpdateDTO;
 import gr.newbies.qrwedding.models.entities.Event;
 import gr.newbies.qrwedding.services.EventService;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -22,10 +23,11 @@ public class EventController extends BaseController{
     EventService eventService;
 
     @RequestMapping(value = "/new",method = RequestMethod.POST)
-    public ResponseEntity<Event> NewEvent (@RequestBody EventCreationDTO dto){
+    public ResponseEntity<JSONObject> NewEvent (@RequestBody EventCreationDTO dto){
         Event e = eventService.create(dto);
         if (e != null){
-            return new ResponseEntity<>(e,HttpStatus.OK);
+            JSONObject jsonObject = e.toJson();
+            return new ResponseEntity<>(jsonObject,HttpStatus.OK);
         }
         else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

@@ -1,6 +1,7 @@
 package gr.newbies.qrwedding.models.entities;
 
 import gr.newbies.qrwedding.models.dtos.EventCreationDTO;
+import org.json.simple.JSONObject;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -51,5 +52,15 @@ public class Event extends GenericModel implements Serializable {
 
     public String getComments() {
         return comments;
-    }   
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("uuid",uuid);
+        json.put("name",name);
+        json.put("comments",comments);
+        json.put("tables_count",tables_count);
+        json.put("tables_left",tables_left);
+        return json;
+    }
 }
