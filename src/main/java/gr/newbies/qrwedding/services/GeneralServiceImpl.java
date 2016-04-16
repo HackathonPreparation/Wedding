@@ -16,7 +16,7 @@ public abstract class GeneralServiceImpl<E>
     @Transactional
     @Override
     public E create(E entity) {
-        return (E)repository.save(this);
+        return (E)repository.save(entity);
     }
     
     @Transactional
