@@ -11,7 +11,7 @@ public interface GeneralService<E> {
     
     List<E> findAll();
         
-    boolean update(E oldEntity,E newEntity);
+    boolean update(E old,E newEntity);
     
     boolean delete(UUID uuid);
 }

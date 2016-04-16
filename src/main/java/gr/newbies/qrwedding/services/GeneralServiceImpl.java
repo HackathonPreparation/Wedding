@@ -33,8 +33,9 @@ public abstract class GeneralServiceImpl<E>
 
     @Transactional
     @Override
-    public boolean update(E oldEntity, E newEntity) {
+    public boolean update(E old, E newEntity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Transactional

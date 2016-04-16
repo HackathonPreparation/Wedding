@@ -1,9 +1,5 @@
 package gr.newbies.qrwedding.extras;
 
-/**
- *
- * @author SoUlKeePeR
- */
 public enum Status {
     PENDING("PENDING"),
     ACCEPTED("ACCEPTED"),
