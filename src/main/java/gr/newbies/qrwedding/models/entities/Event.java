@@ -1,6 +1,7 @@
 package gr.newbies.qrwedding.models.entities;
 
 import gr.newbies.qrwedding.models.dtos.EventCreationDTO;
+import gr.newbies.qrwedding.models.dtos.EventUpdateDTO;
 
 import java.io.Serializable;
 import java.util.UUID;

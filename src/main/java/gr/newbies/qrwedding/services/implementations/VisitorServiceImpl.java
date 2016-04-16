@@ -21,13 +21,7 @@ public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
     }   
     @Override
     public Visitor create(VisitorCreationDTO visitorCreationDTO) {
-        super.create(new Visitor());
-        return new Visitor();
+        return super.create(new Visitor(visitorCreationDTO));
     }
-    
-    @Override
-    public boolean update(VisitorUpdateDTO visitorUpdateDTO){
-        super.update(new Visitor(),new Visitor());
-        return true;
-    }
+
 }

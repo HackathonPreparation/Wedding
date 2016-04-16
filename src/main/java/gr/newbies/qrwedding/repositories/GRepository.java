@@ -5,5 +5,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 @NoRepositoryBean
 public interface GRepository<A> extends JpaRepository<A,Long> {
-    
+
 }

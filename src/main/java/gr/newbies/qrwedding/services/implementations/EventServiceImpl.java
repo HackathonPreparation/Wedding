@@ -22,10 +22,9 @@ public class EventServiceImpl extends GeneralServiceImpl<Event>
     public Event create(EventCreationDTO eventCreationDTO) {
         return super.create(new Event(eventCreationDTO));
     }
-    
-    @Override    
+
     public boolean update(EventUpdateDTO eventUpdateDTO){
-        super.update(new Event(), new Event());
+        ((EventRepository)repository).updateEventByUUID(eventUpdateDTO.getSeats(),eventUpdateDTO.getSeats(),eventUpdateDTO.getName(),eventUpdateDTO.getComment(),eventUpdateDTO.getUuid());
         return true;
     }
 }

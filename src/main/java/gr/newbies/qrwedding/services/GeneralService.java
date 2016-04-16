@@ -10,8 +10,6 @@ public interface GeneralService<E> {
     E findOne(UUID uuid);
     
     List<E> findAll();
-        
-    boolean update(E old,E newEntity);
-    
+
     boolean delete(UUID uuid);
 }

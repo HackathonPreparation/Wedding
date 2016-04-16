@@ -34,27 +34,19 @@ public class EventController extends BaseController{
     }
 
     @RequestMapping(value = "/edit",method = RequestMethod.PUT)
-    public ResponseEntity<Event> EditEvent (@RequestBody EventUpdateDTO dto){
-        Event e = eventService.update(dto);
+    public ResponseEntity EditEvent (@RequestBody EventUpdateDTO dto){
+        boolean response = eventService.update(dto);
+        if (response){
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = "/{uuid}",method = RequestMethod.GET)
     public HttpEntity GetEvent (){
-        //todo return data about wedding (name, comment, visitor status)
-        //todo list of visitors and their status returned
+        //todo return event + list of visitors with event_uuid = event.uuid
         throw new UnsupportedOperationException("soonish");
-    }
-    
-    @RequestMapping(value = "/test")
-    public HttpEntity tryMe(){        
-        List<Event> l = eventService.findAll();
-        for(Event vLookUp:l){
-            System.out.println(vLookUp.getComments());
-            System.out.println(vLookUp.getName());
-            System.out.println(vLookUp.getTable_left());
-            System.out.println(vLookUp.getTables_count());
-            System.out.println(vLookUp.getUuid());
-        }
-        return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 }

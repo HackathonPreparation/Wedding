@@ -1,6 +1,8 @@
 package gr.newbies.qrwedding.models.entities;
 
 import gr.newbies.qrwedding.extras.Status;
+import gr.newbies.qrwedding.models.dtos.VisitorCreationDTO;
+
 import java.io.Serializable;
 import java.util.UUID;
 import javax.persistence.Column;
@@ -12,7 +14,7 @@ import javax.persistence.Table;
 public class Visitor extends GenericModel implements Serializable {
 
     @Column(name = "event_id")
-    private Long event_id;
+    private UUID event_uuid;
     
     @Column(name = "name")
     private String name;
@@ -22,13 +24,22 @@ public class Visitor extends GenericModel implements Serializable {
     
     @Column(name ="table_reg")
     private int table_reg;
-    
-    public Long getEvent_id() {
-        return event_id;
+
+    //TODO QR IMAGE PATH
+
+    public Visitor(VisitorCreationDTO visitorCreationDTO){
+        uuid = UUID.randomUUID();
+        name = visitorCreationDTO.getName();
+        event_uuid = visitorCreationDTO.getEventUUID();
+        //TODO create QR here
     }
 
     public String getName() {
         return name;
+    }
+
+    public UUID getEvent_uuid() {
+        return event_uuid;
     }
 
     public Status getStatus() {
