@@ -19,15 +19,6 @@ public class EventController extends BaseController{
     @Autowired
     EventService eventService;
 
-//    @RequestMapping(method = RequestMethod.POST)
-//    public HttpEntity NewEvent(@RequestBody EventCreationDTO newEvent){
-//        //TODO creation DTO = comment+name
-//        //TODO post to database new event, id, uuid, comment, name
-//        //todo IF uuid exists, retry
-//        //todo return OK made new        
-//        throw new UnsupportedOperationException("soonish");
-//    }
-
     @RequestMapping(value = "/{uuid}",method = RequestMethod.GET)
     public HttpEntity GetEvent (){
         //todo return data about wedding (name, comment, visitor status)
