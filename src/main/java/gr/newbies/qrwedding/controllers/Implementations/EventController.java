@@ -23,16 +23,13 @@ public class EventController extends BaseController{
 
     @RequestMapping(value = "/new",method = RequestMethod.POST)
     public ResponseEntity<Event> NewEvent (@RequestBody EventCreationDTO dto){
-        System.out.println(dto.getComment());
-        System.out.println(dto.getName());
-            return new ResponseEntity<>(HttpStatus.OK);
-//        Event e = eventService.create(dto);
-//        if (e != null){
-//            return new ResponseEntity<>(e,HttpStatus.OK);
-//        }
-//        else {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
+        Event e = eventService.create(dto);
+        if (e != null){
+            return new ResponseEntity<>(e,HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = "/edit",method = RequestMethod.PUT)
