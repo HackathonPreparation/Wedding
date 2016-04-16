@@ -5,7 +5,6 @@ import gr.newbies.qrwedding.models.dtos.EventCreationDTO;
 import gr.newbies.qrwedding.models.dtos.EventUpdateDTO;
 import gr.newbies.qrwedding.models.entities.Event;
 import gr.newbies.qrwedding.services.EventService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -57,7 +56,6 @@ public class EventController extends BaseController{
             System.out.println(e.getUuid());
             System.out.println("\n");
         }
-
         return new ResponseEntity(HttpStatus.OK);
     }
 }

@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Repository
 public interface EventRepository extends GRepository<Event>{
+    Event findByUuid(UUID uuid);
 
     @Modifying
     @Query("UPDATE Event p SET p.tables_count = ?1,p.tables_left = ?2,p.name = ?3, p.comments = ?4 WHERE p.uuid = ?5")

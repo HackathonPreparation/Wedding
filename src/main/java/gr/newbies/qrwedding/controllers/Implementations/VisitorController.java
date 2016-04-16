@@ -1,6 +1,7 @@
 package gr.newbies.qrwedding.controllers.Implementations;
 
 import gr.newbies.qrwedding.controllers.BaseController;
+import gr.newbies.qrwedding.extras.Status;
 import gr.newbies.qrwedding.models.dtos.VisitorCreationDTO;
 import gr.newbies.qrwedding.models.entities.Visitor;
 import gr.newbies.qrwedding.services.VisitorService;
@@ -31,13 +32,17 @@ public class VisitorController extends BaseController{
     }
 
     @RequestMapping(value = "/{uuid:^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}",method = RequestMethod.GET)
-    public HttpEntity<Visitor> GetEvent (@PathVariable UUID uuid){
+    public HttpEntity<String> GetEvent (@PathVariable UUID uuid){
         Visitor v = visitorService.findOne(uuid);
         if (v != null){
-            return new ResponseEntity<>(v, HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        Status status  = v.getStatus();
+        if (status == Status.PENDING || status == Status.DECLINDED){
+            return new ResponseEntity<>(status.toString(),HttpStatus.OK);
         }
         else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(v.toString(),HttpStatus.OK);
         }
     }
 }
