@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "events")
-public class Events implements Serializable {
+public class Event implements Serializable {
     @Id
     private Long id;
     
