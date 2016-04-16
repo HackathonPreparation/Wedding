@@ -10,7 +10,7 @@ import javax.persistence.MappedSuperclass;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class GenericModel {            
     @Id
-    private UUID uuid;    
+    UUID uuid;
 
     public UUID getUuid() {
         return uuid;

@@ -20,8 +20,7 @@ public class EventServiceImpl extends GeneralServiceImpl<Event>
 
     @Override
     public Event create(EventCreationDTO eventCreationDTO) {
-        super.create(new Event());
-        return new Event();
+        return super.create(new Event(eventCreationDTO));
     }
     
     @Override    

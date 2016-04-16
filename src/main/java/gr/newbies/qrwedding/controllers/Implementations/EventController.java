@@ -1,8 +1,8 @@
 package gr.newbies.qrwedding.controllers.Implementations;
 
-import com.sun.deploy.net.HttpResponse;
 import gr.newbies.qrwedding.controllers.BaseController;
 import gr.newbies.qrwedding.models.dtos.EventCreationDTO;
+import gr.newbies.qrwedding.models.dtos.EventUpdateDTO;
 import gr.newbies.qrwedding.models.entities.Event;
 import gr.newbies.qrwedding.services.EventService;
 import java.util.List;
@@ -23,14 +23,19 @@ public class EventController extends BaseController{
     EventService eventService;
 
     @RequestMapping(value = "/new",method = RequestMethod.POST)
-    public HttpEntity NewEvent (@RequestBody EventCreationDTO dto){
+    public ResponseEntity<Event> NewEvent (@RequestBody EventCreationDTO dto){
         Event e = eventService.create(dto);
         if (e != null){
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity<>(e,HttpStatus.OK);
         }
         else {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @RequestMapping(value = "/edit",method = RequestMethod.PUT)
+    public ResponseEntity<Event> EditEvent (@RequestBody EventUpdateDTO dto){
+        Event e = eventService.update(dto);
     }
 
     @RequestMapping(value = "/{uuid}",method = RequestMethod.GET)
