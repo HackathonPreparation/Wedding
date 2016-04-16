@@ -16,7 +16,13 @@ public abstract class GeneralServiceImpl<E>
     @Transactional
     @Override
     public E create(E entity) {
-        return (E)repository.save(entity);
+        System.out.println("before");
+        E e = (E)repository.save(entity);
+        System.out.println("after");
+        System.out.println("->" + e.toString());
+        System.out.println("is it here?");
+//        return (E)repository.save(entity);
+        return null;
     }
     
     @Transactional
