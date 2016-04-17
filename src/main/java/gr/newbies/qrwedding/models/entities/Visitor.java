@@ -41,6 +41,7 @@ public class Visitor extends GenericModel implements Serializable {
         uuid = UUID.randomUUID().toString();
         name = visitorCreationDTO.getName();
         event_id = visitorCreationDTO.getEventUUID();
+        status = Status.PENDING.getData();
         //TODO create QR here
     }
 
