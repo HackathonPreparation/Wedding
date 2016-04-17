@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EventServiceImpl extends GeneralServiceImpl<Event> 
         implements EventService{
-        
+    
     @Autowired
     EventServiceImpl(EventRepository eventRepository){
         repository = eventRepository;
@@ -20,6 +20,9 @@ public class EventServiceImpl extends GeneralServiceImpl<Event>
 
     @Override
     public Event create(EventCreationDTO eventCreationDTO) {
+        if(eventCreationDTO.getName() == null || eventCreationDTO.getComment() == null){
+            return null;
+        }
         return super.create(new Event(eventCreationDTO));
     }
 
@@ -29,7 +32,19 @@ public class EventServiceImpl extends GeneralServiceImpl<Event>
     }
     
     @Override
+    public boolean delete(Event e){
+        if (e == null) {
+            return false;
+        }
+        return super.delete(e);
+    }
+    
+    @Override
     public boolean update(EventUpdateDTO eventUpdateDTO){
+        if(((EventRepository)repository).findByUuid(eventUpdateDTO.getUuid())==null){
+            return false;
+        }
+        
         ((EventRepository)repository).updateEventByUUID(eventUpdateDTO.getSeats(),
                 eventUpdateDTO.getSeats(),eventUpdateDTO.getName(),
                 eventUpdateDTO.getComment(),eventUpdateDTO.getUuid());

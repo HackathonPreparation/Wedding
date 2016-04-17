@@ -44,8 +44,7 @@ public class EventController extends BaseController{
     
     @RequestMapping(value ="/cancelEvent", method = RequestMethod.DELETE)
     public boolean cancelEvent(@RequestBody String toDelete){
-        eventService.delete(eventService.findOne(toDelete));
-        return true;
+        return eventService.delete(eventService.findOne(toDelete));
     }
     
     @RequestMapping(value = "/edit",method = RequestMethod.PUT)
