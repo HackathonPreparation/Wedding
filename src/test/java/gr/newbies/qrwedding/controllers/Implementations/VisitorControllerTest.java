@@ -144,5 +144,9 @@ public class VisitorControllerTest extends AbstractControllerTest{
         verify(service,times(0)).findOne(Matchers.anyString());        
     }
     
+    @Test
+    public void testAcceptMethondSuccess() throws Exception{
+        
+    }
     
 }

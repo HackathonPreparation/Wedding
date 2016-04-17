@@ -39,8 +39,8 @@ public class VisitorController extends BaseController{
         return new ResponseEntity<>(json,HttpStatus.OK);
     }
         
-    @RequestMapping(value = "/accept",method = RequestMethod.PUT)
-    public ResponseEntity<Visitor> acceptVis (@RequestParam(name = "uuid") String uuid){
+    @RequestMapping(value = "/accept/{uuid}",method = RequestMethod.PUT)
+    public ResponseEntity<Visitor> acceptVis (@PathVariable String uuid){
         Visitor v = visitorService.updateStatus(uuid, Status.ACCEPTED);
         if (v == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -48,8 +48,8 @@ public class VisitorController extends BaseController{
         return new ResponseEntity<>(v, HttpStatus.OK);        
     }
     
-    @RequestMapping(value = "/decline",method = RequestMethod.PUT)
-    public ResponseEntity<Visitor> declineVis (@RequestParam(name = "uuid") String uuid){
+    @RequestMapping(value = "/decline/{uuid}",method = RequestMethod.PUT)
+    public ResponseEntity<Visitor> declineVis (@PathVariable String uuid){
         Visitor v = visitorService.updateStatus(uuid, Status.DECLINDED);
         if (v == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
