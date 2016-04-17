@@ -37,15 +37,12 @@ public class Visitor extends GenericModel implements Serializable {
     public Visitor() {
     }
 
-    //TODO QR IMAGE PATH
-
     public Visitor(VisitorCreationDTO visitorCreationDTO,String uuid, String image_path){
         this.uuid = uuid;
         name = visitorCreationDTO.getName();
         event_id = visitorCreationDTO.getEventUUID();
         status = Status.PENDING.getData();
         this.image_path = image_path;
-        //TODO create QR here
     }
 
     public String getName() {
@@ -75,6 +72,7 @@ public class Visitor extends GenericModel implements Serializable {
         json.put("event_id",event_id);
         json.put("status",status);
         json.put("table_reg",table_reg);
+        json.put("image_path",image_path);
         return json;
     }
 }

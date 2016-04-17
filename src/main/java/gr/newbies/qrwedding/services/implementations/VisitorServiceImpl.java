@@ -18,7 +18,7 @@ import java.util.UUID;
 public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
         implements VisitorService{
     
-    QRGenerator myQR = new QRGenerator();
+    private QRGenerator myQR = new QRGenerator();
     
     @Autowired
     VisitorServiceImpl(VisitorRepository visitorRepository){
