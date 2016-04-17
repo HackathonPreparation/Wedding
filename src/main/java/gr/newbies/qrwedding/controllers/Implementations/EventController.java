@@ -37,13 +37,13 @@ public class EventController extends BaseController{
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public boolean cancelInvitation(@RequestParam(name = "toDelete") String toDelete){
+    public boolean cancelInvitation(@RequestBody String toDelete){
         visitorService.delete(visitorService.findOne(toDelete));
         return true;
     }
     
     @RequestMapping(value ="/cancelEvent", method = RequestMethod.DELETE)
-    public boolean cancelEvent(@RequestParam(name = "toDelete") String toDelete){
+    public boolean cancelEvent(@RequestBody String toDelete){
         eventService.delete(eventService.findOne(toDelete));
         return true;
     }
