@@ -1,6 +1,7 @@
 package gr.newbies.qrwedding.controllers.Implementations;
 
 import gr.newbies.qrwedding.AbstractControllerTest;
+import gr.newbies.qrwedding.models.entities.Event;
 import gr.newbies.qrwedding.services.implementations.EventServiceImpl;
 import gr.newbies.qrwedding.services.implementations.VisitorServiceImpl;
 import javax.transaction.Transactional;
@@ -89,6 +90,24 @@ public class EventControllerTest extends AbstractControllerTest {
         verify(eventService,times(1)).update(any());
         
         Assert.assertEquals("Failure expected OK",status ,200);
+    }
+    
+     @Test
+    public void testCancelEvent() throws Exception  {
+//        json.put("toDelete", "123456789");
+//        
+//        when(eventService.delete(any(Event.class))).thenReturn(true);
+//        
+//        MvcResult result = mvc.perform(MockMvcRequestBuilders.put(uri + "/cancelEvent").
+//                )
+//                .andReturn();
+//        
+//        String content = result.getResponse().getContentAsString();
+//        int status = result.getResponse().getStatus();
+//        
+//        verify(eventService,times(1)).delete(any(Event.class));
+//        
+//        Assert.assertEquals("Failure expected OK",200 ,HttpStatus.OK);
     }
     
 }

@@ -16,6 +16,12 @@ import java.util.logging.Logger;
 
 public class QRGenerator {
     
+    /**
+     * generate a QRcode using uuid visitor and uuid event 
+     * @param UUID_Visitor
+     * @param UUID_Event
+     * @return 
+     */
     public String generateQR(String UUID_Visitor, String UUID_Event){	
 	String qrCodeData = ProgPaths.IMAGE_ONLINE_PATH.getData(UUID_Visitor,"/"); // to link edw
         
@@ -38,6 +44,11 @@ public class QRGenerator {
         return filePath;
     }
 
+     /**
+      * generates the path for making QRcode
+      * @param filePath
+      * @return 
+      */
     private boolean pathGenerator(String filePath){
         File newFile = new File(ProgPaths.IMAGES_OUTPUT_FOLDER
                 .getData(filePath,"\\"));
@@ -49,6 +60,17 @@ public class QRGenerator {
         return true;
     }
     
+    /**
+     * creates a QRcode and transform it to a png image
+     * @param qrCodeData
+     * @param filePath
+     * @param charset
+     * @param hintMap
+     * @param qrCodeheight
+     * @param qrCodewidth
+     * @throws WriterException
+     * @throws IOException 
+     */
     private void createQRCode(String qrCodeData, String filePath, 
             String charset, Map hintMap, int qrCodeheight, int qrCodewidth)
                             throws WriterException, IOException {

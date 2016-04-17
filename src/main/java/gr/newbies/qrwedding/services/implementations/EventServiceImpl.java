@@ -9,6 +9,8 @@ import gr.newbies.qrwedding.services.GeneralServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+
 @Service
 public class EventServiceImpl extends GeneralServiceImpl<Event> 
         implements EventService{
@@ -17,7 +19,12 @@ public class EventServiceImpl extends GeneralServiceImpl<Event>
     EventServiceImpl(EventRepository eventRepository){
         repository = eventRepository;
     }
-
+    
+    /**
+     * registration of a new event
+     * @param eventCreationDTO
+     * @return 
+     */
     @Override
     public Event create(EventCreationDTO eventCreationDTO) {
         if(eventCreationDTO.getName() == null || eventCreationDTO.getComment() == null){
@@ -25,12 +32,23 @@ public class EventServiceImpl extends GeneralServiceImpl<Event>
         }
         return super.create(new Event(eventCreationDTO));
     }
-
+    
+    /**
+     * returns an event by a uuid
+     * @param uuid
+     * @return 
+     */
     @Override
     public Event findOne(String uuid) {
         return ((EventRepository)repository).findByUuid(uuid);
     }
     
+    /**
+     * returns true if event have been deleted
+     * returns false if the event parameter is null 
+     * @param e
+     * @return 
+     */
     @Override
     public boolean delete(Event e){
         if (e == null) {
@@ -39,6 +57,12 @@ public class EventServiceImpl extends GeneralServiceImpl<Event>
         return super.delete(e);
     }
     
+    /**
+     * returns true every time that update is successful
+     * returns false if the event DTO is not found or if it is null
+     * @param eventUpdateDTO
+     * @return 
+     */
     @Override
     public boolean update(EventUpdateDTO eventUpdateDTO){
         if(((EventRepository)repository).findByUuid(eventUpdateDTO.getUuid())==null){

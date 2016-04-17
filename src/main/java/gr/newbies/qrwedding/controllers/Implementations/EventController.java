@@ -26,6 +26,11 @@ public class EventController extends BaseController{
     @Autowired
     VisitorService visitorService;
 
+    /**
+     * create a new event
+     * @param dto
+     * @return 
+     */
     @RequestMapping(value = "/new",method = RequestMethod.POST)
     public ResponseEntity<JSONObject> NewEvent (@RequestBody EventCreationDTO dto){
         Event e = eventService.create(dto);
@@ -38,17 +43,33 @@ public class EventController extends BaseController{
         }
     }
 
+    /**
+     * delete user from wedding
+     * @param toDelete
+     * @return 
+     */
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public boolean cancelInvitation(@RequestBody String toDelete){
         visitorService.delete(visitorService.findOne(toDelete));
         return true;
     }
+  
     
+    /**
+     * delete event
+     * @param toDelete
+     * @return 
+     */
     @RequestMapping(value ="/cancelEvent", method = RequestMethod.DELETE)
     public boolean cancelEvent(@RequestBody String toDelete){
         return eventService.delete(eventService.findOne(toDelete));
     }
-    
+  
+    /**
+     * change wedding's data
+     * @param dto
+     * @return 
+     */
     @RequestMapping(value = "/edit",method = RequestMethod.PUT)
     public ResponseEntity EditEvent (@RequestBody EventUpdateDTO dto){
         boolean response = eventService.update(dto);
@@ -62,6 +83,11 @@ public class EventController extends BaseController{
         }
     }
 
+    /**
+     * show wedding's accepted visitors
+     * @param uuid
+     * @return 
+     */
     @RequestMapping(value = "/{uuid:^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}/accepted",method = RequestMethod.GET)
     public HttpEntity<JSONObject> GetEvent (@PathVariable String uuid){
         Event e = eventService.findOne(uuid);
@@ -83,6 +109,11 @@ public class EventController extends BaseController{
         return new ResponseEntity<>(json,HttpStatus.OK);
     }
     
+    /**
+     * show all invited visitors
+     * @param uuid
+     * @return 
+     */
     @RequestMapping(value = "/{uuid:^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}/all",method = RequestMethod.GET)
     public HttpEntity<JSONObject> GetAllEvent (@PathVariable String uuid){
         Event e = eventService.findOne(uuid);

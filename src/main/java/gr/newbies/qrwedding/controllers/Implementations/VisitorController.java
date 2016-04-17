@@ -19,6 +19,11 @@ public class VisitorController extends BaseController{
     @Autowired
     VisitorService visitorService;
 
+    /**
+     * creates new guest
+     * @param visitorCreationDTO
+     * @return 
+     */
     @RequestMapping(value = "/new",method = RequestMethod.POST)
     public ResponseEntity<Visitor> NewEvent (@RequestBody VisitorCreationDTO visitorCreationDTO){
         Visitor v = visitorService.create(visitorCreationDTO);
@@ -29,6 +34,11 @@ public class VisitorController extends BaseController{
         }
     }    
     
+    /**
+     * gets informations about a visitor based on uuid
+     * @param uuid
+     * @return 
+     */
     @RequestMapping(value = "/{uuid:^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}",method = RequestMethod.GET)
     public HttpEntity<JSONObject> GetEvent (@PathVariable String uuid){
         Visitor v = visitorService.findOne(uuid);
@@ -38,7 +48,13 @@ public class VisitorController extends BaseController{
         JSONObject json = v.toJson();
         return new ResponseEntity<>(json,HttpStatus.OK);
     }
-        
+    
+    
+    /**
+     * changes guest's status to ACCEPTED
+     * @param uuid
+     * @return 
+     */
     @RequestMapping(value = "/accept",method = RequestMethod.PUT)
     public ResponseEntity<Visitor> acceptVis (@RequestParam(name = "uuid") String uuid){
         Visitor v = visitorService.updateStatus(uuid, Status.ACCEPTED);
@@ -48,6 +64,11 @@ public class VisitorController extends BaseController{
         return new ResponseEntity<>(v, HttpStatus.OK);        
     }
     
+    /**
+     * changes guest's status to DECLINED
+     * @param uuid
+     * @return 
+     */
     @RequestMapping(value = "/decline",method = RequestMethod.PUT)
     public ResponseEntity<Visitor> declineVis (@RequestParam(name = "uuid") String uuid){
         Visitor v = visitorService.updateStatus(uuid, Status.DECLINDED);

@@ -30,6 +30,12 @@ public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
         repository = visitorRepository;
     }   
     
+    /**
+     * register a new visitor DTO
+     * 
+     * @param visitorCreationDTO
+     * @return 
+     */
     @Override
     public Visitor create(VisitorCreationDTO visitorCreationDTO){
         if(visitorCreationDTO.getEventUUID() == null || visitorCreationDTO.getName() == null) {
@@ -46,11 +52,22 @@ public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
         return super.create(new Visitor(visitorCreationDTO,uuid,filePath));
     }
     
+    /**
+     * returns a visitor by uuid
+     * @param uuid
+     * @return 
+     */
     @Override
     public Visitor findOne(String uuid){ //ignores superclass findOne because its not needed here
         return ((VisitorRepository)repository).findVisitorByUUID(uuid);
     }
     
+    /**
+     * updates visitor's status
+     * @param uuid
+     * @param status
+     * @return 
+     */
     @Override
     public Visitor updateStatus(String uuid, Status status){
         if(((VisitorRepository)repository).findVisitorByUUID(uuid) == null){
@@ -59,6 +76,12 @@ public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
         return ((VisitorRepository)repository).updateVisitorByUUID(status.getData(), uuid);
     }
 
+    /**
+     * finds all the visitors by eventid 
+     * if list of visitors is empty or null returns null
+     * @param uuid
+     * @return 
+     */
     @Override
     public JSONArray findVisitorsByEventId(String uuid){
         JSONArray jsonArray = new JSONArray();
@@ -75,6 +98,11 @@ public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
         return jsonArray;
     }
     
+    /**
+     * returns true if visitor has deleted
+     * @param e
+     * @return 
+     */
     @Override
     public boolean delete(Visitor e){
         if (e == null) {
@@ -83,6 +111,11 @@ public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
         return super.delete(e);
     }
     
+    /**
+     * gets a list of visitors who will accept the invitation
+     * @param uuid_ev
+     * @return 
+     */
     @Override
     public List<Visitor> findAllAccepted(String uuid_ev) {
         return ((VisitorRepository)repository).findAcceptedVisitorsByEventUUID(uuid_ev, Status.ACCEPTED.getData());
