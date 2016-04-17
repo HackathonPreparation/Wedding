@@ -1,5 +1,6 @@
 package gr.newbies.qrwedding.services.implementations;
 
+import gr.newbies.qrwedding.extras.Status;
 import gr.newbies.qrwedding.models.dtos.VisitorCreationDTO;
 import gr.newbies.qrwedding.models.entities.Visitor;
 import org.json.simple.JSONArray;
@@ -10,10 +11,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author SoUlKeePeR
- */
 public class VisitorServiceImplTest {
     
     public VisitorServiceImplTest() {
@@ -74,7 +71,7 @@ public class VisitorServiceImplTest {
         String uuid = "";
         VisitorServiceImpl instance = null;
         Visitor expResult = null;
-        Visitor result = instance.updateStatus(uuid);
+        Visitor result = instance.updateStatus(uuid, Status.ACCEPTED);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

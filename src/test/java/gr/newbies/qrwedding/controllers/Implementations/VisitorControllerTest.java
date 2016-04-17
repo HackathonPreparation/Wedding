@@ -76,8 +76,8 @@ public class VisitorControllerTest {
         String uuid = "";
         VisitorController instance = new VisitorController();
         ResponseEntity<Visitor> expResult = null;
-        ResponseEntity<Visitor> result = instance.updateVis(uuid);
-        assertEquals(expResult, result);
+        //ResponseEntity<Visitor> result = instance.updateVis(uuid);
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

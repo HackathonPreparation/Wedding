@@ -1,7 +1,7 @@
 package gr.newbies.qrwedding.models.dtos;
 
 public class EventUpdateDTO {
-    private int Seats;
+    private int seats;
     private String uuid;
     private String name;
     private String comment;
@@ -19,6 +19,6 @@ public class EventUpdateDTO {
     }
 
     public int getSeats() {
-        return Seats;
+        return seats;
     }
 }

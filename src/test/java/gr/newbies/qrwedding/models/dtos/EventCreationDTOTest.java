@@ -1,17 +1,16 @@
 package gr.newbies.qrwedding.models.dtos;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import gr.newbies.qrwedding.AbstractControllerTest;
+import org.json.simple.JSONObject;
+import org.junit.*;
+import org.springframework.test.context.web.WebAppConfiguration;
 
-/**
- *
- * @author SoUlKeePeR
- */
-public class EventCreationDTOTest {
+import java.io.IOException;
+
+import static org.junit.Assert.assertEquals;
+
+@WebAppConfiguration
+public class EventCreationDTOTest extends AbstractControllerTest{
     
     public EventCreationDTOTest() {
     }
@@ -32,32 +31,25 @@ public class EventCreationDTOTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getName method, of class EventCreationDTO.
-     */
+
     @Test
-    public void testGetName() {
-        System.out.println("getName");
-        EventCreationDTO instance = new EventCreationDTO();
-        String expResult = "";
-        String result = instance.getName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetName() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("name","testName");
+        json.put("comment","testComment");
+        EventCreationDTO eventCreationDTO = mapFromJson(json.toString(),EventCreationDTO.class);
+        String result = eventCreationDTO.getName();
+        assertEquals("testName",result);
     }
 
-    /**
-     * Test of getComment method, of class EventCreationDTO.
-     */
     @Test
-    public void testGetComment() {
-        System.out.println("getComment");
-        EventCreationDTO instance = new EventCreationDTO();
-        String expResult = "";
-        String result = instance.getComment();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetComment() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("name","testName");
+        json.put("comment","testComment");
+        EventCreationDTO eventCreationDTO = mapFromJson(json.toString(),EventCreationDTO.class);
+        String result = eventCreationDTO.getComment();
+        assertEquals("testComment",result);
     }
     
 }
