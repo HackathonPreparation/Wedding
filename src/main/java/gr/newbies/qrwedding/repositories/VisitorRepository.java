@@ -15,4 +15,6 @@ public interface VisitorRepository extends GRepository<Visitor>{
     @Modifying
     @Query("update Visitor u set u.status = ?1 where u.uuid = ?2")
     Visitor updateVisitorByUUID(String status, String uuid);
+
+    List<Visitor> findAcceptedVisitorsByEventUUID(String uuid,String status);
 }

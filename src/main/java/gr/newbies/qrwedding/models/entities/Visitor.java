@@ -14,7 +14,8 @@ import javax.persistence.Table;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Visitor.findVisitorByUUID", query = "SELECT p FROM Visitor p WHERE p.uuid = ?1"),
-    @NamedQuery(name = "Visitor.findVisitorsByEventUUID", query = "SELECT p FROM Visitor p WHERE p.event_id = ?1")
+    @NamedQuery(name = "Visitor.findVisitorsByEventUUID", query = "SELECT p FROM Visitor p WHERE p.event_id = ?1"),
+    @NamedQuery(name = "Visitor.findAcceptedVisitorsByEventUUID", query = "SELECT p FROM Visitor p WHERE p.event_id = ?1 AND p.status = ?2")
 })
 @Table(name = "visitors")
 public class Visitor extends GenericModel implements Serializable {
