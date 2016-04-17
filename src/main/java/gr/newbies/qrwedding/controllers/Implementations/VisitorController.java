@@ -32,11 +32,7 @@ public class VisitorController extends BaseController{
     @RequestMapping(value = "/{uuid:^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}",method = RequestMethod.GET)
     public HttpEntity<JSONObject> GetEvent (@PathVariable String uuid){
         Visitor v = visitorService.findOne(uuid);
-        System.out.println(v.getUuid());
-        System.out.println(v.getEvent_id());
-        System.out.println(v.getName());
-        
-        if (v != null){
+        if (v == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         JSONObject json = v.toJson();
