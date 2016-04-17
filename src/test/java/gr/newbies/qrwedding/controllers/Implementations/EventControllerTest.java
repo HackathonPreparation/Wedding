@@ -1,22 +1,42 @@
 package gr.newbies.qrwedding.controllers.Implementations;
 
-import gr.newbies.qrwedding.models.dtos.EventCreationDTO;
-import gr.newbies.qrwedding.models.dtos.EventUpdateDTO;
-import org.json.simple.JSONObject;
+import gr.newbies.qrwedding.AbstractControllerTest;
+import gr.newbies.qrwedding.services.implementations.EventServiceImpl;
+import gr.newbies.qrwedding.services.implementations.VisitorServiceImpl;
+import javax.transaction.Transactional;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
+import org.mockito.InjectMocks;
+import static org.mockito.Matchers.any;
+import org.mockito.*;
+import org.junit.*;
 
-/**
- *
- * @author SoUlKeePeR
- */
-public class EventControllerTest {
+import org.mockito.MockitoAnnotations;
+import static org.mockito.Mockito.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+@Transactional
+@WebAppConfiguration
+@ActiveProfiles({"mixalis", "mixalis"})
+public class EventControllerTest extends AbstractControllerTest {
+    String uri;
+    
+    @Mock 
+    EventServiceImpl eventService;
+    
+    @Mock
+    VisitorServiceImpl visitorService;
+    
+    @InjectMocks
+    EventController controller;
     
     public EventControllerTest() {
     }
@@ -30,86 +50,45 @@ public class EventControllerTest {
     }
     
     @Before
+    @Override
     public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        
+        super.setUp(controller);
+        
+        uri="http://localhost:8080/event";
     }
     
     @After
+    @Override
     public void tearDown() {
+        super.tearDown();
+        
+        uri=null;
     }
-
-    /**
-     * Test of NewEvent method, of class EventController.
-     */
+ 
     @Test
-    public void testNewEvent() {
-        System.out.println("NewEvent");
-        EventCreationDTO dto = null;
-        EventController instance = new EventController();
-        ResponseEntity<JSONObject> expResult = null;
-        ResponseEntity<JSONObject> result = instance.NewEvent(dto);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of cancelInvitation method, of class EventController.
-     */
-    @Test
-    public void testCancelInvitation() {
-        System.out.println("cancelInvitation");
-        String toDelete = "";
-        EventController instance = new EventController();
-        boolean expResult = false;
-        boolean result = instance.cancelInvitation(toDelete);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of cancelEvent method, of class EventController.
-     */
-    @Test
-    public void testCancelEvent() {
-        System.out.println("cancelEvent");
-        String toDelete = "";
-        EventController instance = new EventController();
-        boolean expResult = false;
-        boolean result = instance.cancelEvent(toDelete);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of EditEvent method, of class EventController.
-     */
-    @Test
-    public void testEditEvent() {
-        System.out.println("EditEvent");
-        EventUpdateDTO dto = null;
-        EventController instance = new EventController();
-        ResponseEntity expResult = null;
-        ResponseEntity result = instance.EditEvent(dto);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of GetEvent method, of class EventController.
-     */
-    @Test
-    public void testGetEvent() {
-        System.out.println("GetEvent");
-        String uuid = "";
-        EventController instance = new EventController();
-        HttpEntity<JSONObject> expResult = null;
-        HttpEntity<JSONObject> result = instance.GetEvent(uuid);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testEditEventSuccess() throws Exception  {
+        json.put("seats","2");
+        json.put("uuid","12345678-1245-1245-2365-123456789145");
+        json.put("name", "Kwnstantina");
+        json.put("comment", "ufwiefbwubw");
+        
+        System.out.println(json.toJSONString());
+        
+        when(eventService.update(any())).thenReturn(true);
+        
+        MvcResult result = mvc.perform(MockMvcRequestBuilders.put(uri + "/edit")
+                .content(json.toJSONString())
+                .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        
+        String content = result.getResponse().getContentAsString();
+        int status = result.getResponse().getStatus();
+        
+        verify(eventService,times(1)).update(any());
+        
+        Assert.assertEquals("Failure expected OK",status ,200);
     }
     
 }
