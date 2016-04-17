@@ -45,9 +45,9 @@ public class QRGenerator {
         File newFile = new File(ProgPaths.IMAGES_OUTPUT_FOLDER
                 .getData(filePath,"\\"));
         System.out.println("newFile -> " + newFile);
-        if (!newFile.getParentFile().exists()){
+        if (!newFile.exists()){
             System.out.println("Was it true?");
-             newFile.getParentFile().mkdirs(); 
+             newFile.mkdirs(); 
         } else {
             System.out.println("Was false");
             return false;
