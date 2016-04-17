@@ -12,10 +12,6 @@ import static org.junit.Assert.*;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 
-/**
- *
- * @author SoUlKeePeR
- */
 public class VisitorControllerTest {
     
     public VisitorControllerTest() {

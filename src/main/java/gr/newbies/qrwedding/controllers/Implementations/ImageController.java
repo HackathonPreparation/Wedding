@@ -15,6 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/image")
 public class ImageController extends BaseController{
     
+    /**
+     * pio swsto 8a itan na ektelite o controller kai na petaw egw to error an to UUID einai la8os
+     * @param uuid_ev
+     * @param uuid_vis
+     * @return
+     * @throws IOException 
+     */
     @RequestMapping(value = "/{uuid_ev:^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}}" +
         "/{uuid_vis:[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}",method = RequestMethod.GET)
     public @ResponseBody byte[] getImage(@PathVariable("uuid_ev") String uuid_ev, @PathVariable("uuid_vis") String uuid_vis)
