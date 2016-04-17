@@ -16,18 +16,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ImageController extends BaseController{
     
     /**
-     * download an image from server 
+     * pio swsto 8a itan na ektelite o controller kai na petaw egw to error an to UUID einai la8os
      * @param uuid_ev
      * @param uuid_vis
-     * @return (QRcode image as bytes)
+     * @return
      * @throws IOException 
      */
     @RequestMapping(value = "/{uuid_ev:^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}}" +
-        "/{uuid_vis:[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}",method = RequestMethod.GET)
+        "/{uuid_vis:[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}\\.png$}",method = RequestMethod.GET)
     public @ResponseBody byte[] getImage(@PathVariable("uuid_ev") String uuid_ev, @PathVariable("uuid_vis") String uuid_vis)
             throws IOException{
         String str = ProgPaths.IMAGES_OUTPUT_FOLDER.getData(uuid_ev, uuid_vis , "\\");
-        File f = new File(str + ".png");
+        File f = new File(str);
         if(!f.exists()){
             return Files.readAllBytes(
                     new File(ProgPaths.IMAGES_DEFAULT.getData()).toPath()); 

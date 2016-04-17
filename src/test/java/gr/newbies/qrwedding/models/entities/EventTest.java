@@ -1,18 +1,16 @@
 package gr.newbies.qrwedding.models.entities;
 
+import gr.newbies.qrwedding.AbstractControllerTest;
 import org.json.simple.JSONObject;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.*;
+import org.springframework.test.context.web.WebAppConfiguration;
 
-/**
- *
- * @author SoUlKeePeR
- */
-public class EventTest {
+import java.io.IOException;
+
+import static org.junit.Assert.assertEquals;
+
+@WebAppConfiguration
+public class EventTest extends AbstractControllerTest{
     
     public EventTest() {
     }
@@ -33,74 +31,69 @@ public class EventTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getName method, of class Event.
-     */
     @Test
-    public void testGetName() {
-        System.out.println("getName");
-        Event instance = new Event();
-        String expResult = "";
-        String result = instance.getName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetName() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","b345e2be-a41b-4757-849d-7b9a26d09e72");
+        json.put("name","testName");
+        json.put("comments","testComment");
+        json.put("tables_count",10);
+        json.put("tables_left",9);
+        Event event = mapFromJson(json.toString(),Event.class);
+        String result = event.getName();
+        assertEquals("testName",result);
     }
 
-    /**
-     * Test of getTables_count method, of class Event.
-     */
     @Test
-    public void testGetTables_count() {
-        System.out.println("getTables_count");
-        Event instance = new Event();
-        int expResult = 0;
-        int result = instance.getTables_count();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetTables_count() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","b345e2be-a41b-4757-849d-7b9a26d09e72");
+        json.put("name","testName");
+        json.put("comments","testComment");
+        json.put("tables_count",10);
+        json.put("tables_left",9);
+        Event event = mapFromJson(json.toString(),Event.class);
+        int result = event.getTables_count();
+        assertEquals(10,result);
     }
 
-    /**
-     * Test of getTables_left method, of class Event.
-     */
     @Test
-    public void testGetTables_left() {
-        System.out.println("getTables_left");
-        Event instance = new Event();
-        int expResult = 0;
-        int result = instance.getTables_left();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetTables_left() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","b345e2be-a41b-4757-849d-7b9a26d09e72");
+        json.put("name","testName");
+        json.put("comments","testComment");
+        json.put("tables_count",10);
+        json.put("tables_left",9);
+        Event event = mapFromJson(json.toString(),Event.class);
+        int result = event.getTables_left();
+        assertEquals(9,result);
     }
 
-    /**
-     * Test of getComments method, of class Event.
-     */
     @Test
-    public void testGetComments() {
-        System.out.println("getComments");
-        Event instance = new Event();
-        String expResult = "";
-        String result = instance.getComments();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetComments() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","b345e2be-a41b-4757-849d-7b9a26d09e72");
+        json.put("name","testName");
+        json.put("comments","testComment");
+        json.put("tables_count",10);
+        json.put("tables_left",9);
+        Event event = mapFromJson(json.toString(),Event.class);
+        String result = event.getComments();
+        assertEquals("testComment",result);
     }
 
-    /**
-     * Test of toJson method, of class Event.
-     */
     @Test
-    public void testToJson() {
-        System.out.println("toJson");
-        Event instance = new Event();
-        JSONObject expResult = null;
-        JSONObject result = instance.toJson();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testToJson() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","b345e2be-a41b-4757-849d-7b9a26d09e72");
+        json.put("name","testName");
+        json.put("comments","testComment");
+        json.put("tables_count",10);
+        json.put("tables_left",9);
+        Event event = mapFromJson(json.toString(),Event.class);
+        JSONObject result = event.toJson();
+        assertEquals(json,result);
     }
     
 }

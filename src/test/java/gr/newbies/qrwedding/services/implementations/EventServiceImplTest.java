@@ -1,17 +1,36 @@
 package gr.newbies.qrwedding.services.implementations;
 
+import gr.newbies.qrwedding.AbstractControllerTest;
 import gr.newbies.qrwedding.models.dtos.EventCreationDTO;
 import gr.newbies.qrwedding.models.dtos.EventUpdateDTO;
 import gr.newbies.qrwedding.models.entities.Event;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import gr.newbies.qrwedding.repositories.EventRepository;
+import gr.newbies.qrwedding.services.EventService;
+import org.json.simple.JSONObject;
+import org.junit.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.web.WebAppConfiguration;
 
-public class EventServiceImplTest {
-    
+import java.io.IOException;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+
+@WebAppConfiguration
+public class EventServiceImplTest extends AbstractControllerTest{
+
+    @Mock
+    private EventRepository repository;
+
+    @InjectMocks
+    private EventServiceImpl mockService;
+
+    @Autowired
+    private EventService service;
+
     public EventServiceImplTest() {
     }
     
@@ -25,55 +44,81 @@ public class EventServiceImplTest {
     
     @Before
     public void setUp() {
+        MockitoAnnotations.initMocks(this);
     }
     
     @After
     public void tearDown() {
     }
 
-    /**
-     * Test of create method, of class EventServiceImpl.
-     */
     @Test
-    public void testCreate() {
-        System.out.println("create");
-        EventCreationDTO eventCreationDTO = null;
-        EventServiceImpl instance = null;
-        Event expResult = null;
-        Event result = instance.create(eventCreationDTO);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testCreateSuccess() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("name","testName");
+        json.put("comment","testComment");
+        EventCreationDTO eventCreationDTO = mapFromJson(json.toString(),EventCreationDTO.class);
+        Event event = new Event(eventCreationDTO);
+        when(repository.save(new Event(eventCreationDTO))).thenReturn(event);
+        Event result = service.create(eventCreationDTO);
+        assertEquals(event.getName(),result.getName());
+        assertEquals(event.getComments(),result.getComments());
     }
 
-    /**
-     * Test of findOne method, of class EventServiceImpl.
-     */
     @Test
-    public void testFindOne() {
-        System.out.println("findOne");
-        String uuid = "";
-        EventServiceImpl instance = null;
-        Event expResult = null;
-        Event result = instance.findOne(uuid);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testCreateNull() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("name",null);
+        json.put("comment",null);
+        EventCreationDTO eventCreationDTO = mapFromJson(json.toString(),EventCreationDTO.class);
+        when(repository.save(new Event(eventCreationDTO))).thenReturn(null);
+        Event result = mockService.create(eventCreationDTO);
+        assertEquals(null,result);
     }
 
-    /**
-     * Test of update method, of class EventServiceImpl.
-     */
     @Test
-    public void testUpdate() {
-        System.out.println("update");
-        EventUpdateDTO eventUpdateDTO = null;
-        EventServiceImpl instance = null;
-        boolean expResult = false;
-        boolean result = instance.update(eventUpdateDTO);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testFindOneSuccess() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("name","testName");
+        json.put("comment","testComment");
+        EventCreationDTO eventCreationDTO = mapFromJson(json.toString(),EventCreationDTO.class);
+        Event event = new Event(eventCreationDTO);
+        String uuid = event.getUuid();
+        when(repository.findByUuid(uuid)).thenReturn(event);
+        Event result = mockService.findOne(uuid);
+        assertEquals(event,result);
     }
-    
+
+    @Test
+    public void testFindOneNull() throws IOException {
+        String uuid = "fakeUUID";
+        when(repository.findByUuid("fakeUUID")).thenReturn(null);
+        Event result = mockService.findOne(uuid);
+        assertEquals(null,result);
+    }
+
+    @Test
+    public void testUpdateNull() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("name","testName");
+        json.put("comment","testComment");
+        json.put("seats",10);
+        json.put("uuid","abcdcf85-d6e5-4c19-95bd-bd5113be9ae0");
+        EventUpdateDTO eventUpdateDTO = mapFromJson(json.toString(),EventUpdateDTO.class);
+        when(repository.findByUuid(eventUpdateDTO.getUuid())).thenReturn(null);
+        Boolean response = mockService.update(eventUpdateDTO);
+        assertEquals(false, response);
+    }
+
+    @Test
+    public void testUpdateSuccess() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("name","testName");
+        json.put("comment","testComment");
+        json.put("seats",10);
+        json.put("uuid","abcdcf85-d6e5-4c19-95bd-bd5113be9ae0");
+        EventUpdateDTO eventUpdateDTO = mapFromJson(json.toString(),EventUpdateDTO.class);
+        when(repository.findByUuid(eventUpdateDTO.getUuid())).thenReturn(new Event());
+        Boolean response = mockService.update(eventUpdateDTO);
+        assertEquals(true, response);
+    }
 }

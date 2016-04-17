@@ -43,26 +43,15 @@ public class EventController extends BaseController{
         }
     }
 
-    /**
-     * delete user from wedding
-     * @param toDelete
-     * @return 
-     */
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public boolean cancelInvitation(@RequestBody String toDelete){
-        visitorService.delete(visitorService.findOne(toDelete));
-        return true;
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public boolean cancelInvitation(@PathVariable String id){
+        return visitorService.delete(visitorService.findOne(id));         
     }
   
     
-    /**
-     * delete event
-     * @param toDelete
-     * @return 
-     */
-    @RequestMapping(value ="/cancelEvent", method = RequestMethod.DELETE)
-    public boolean cancelEvent(@RequestBody String toDelete){
-        return eventService.delete(eventService.findOne(toDelete));
+    @RequestMapping(value ="/cancelEvent/{id}", method = RequestMethod.GET)
+    public boolean cancelEvent(@PathVariable String id){
+        return eventService.delete(eventService.findOne(id));
     }
   
     /**

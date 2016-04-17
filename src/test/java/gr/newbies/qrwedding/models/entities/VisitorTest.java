@@ -1,18 +1,21 @@
 package gr.newbies.qrwedding.models.entities;
 
+import gr.newbies.qrwedding.AbstractControllerTest;
+import gr.newbies.qrwedding.extras.Status;
 import org.json.simple.JSONObject;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
-/**
- *
- * @author SoUlKeePeR
- */
-public class VisitorTest {
+@WebAppConfiguration
+public class VisitorTest extends AbstractControllerTest{
     
     public VisitorTest() {
     }
@@ -33,101 +36,101 @@ public class VisitorTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getName method, of class Visitor.
-     */
     @Test
-    public void testGetName() {
-        System.out.println("getName");
-        Visitor instance = new Visitor();
-        String expResult = "";
-        String result = instance.getName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetName() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","b345e2be-a41b-4757-849d-7b9a26d09e72");
+        json.put("name","testName");
+        json.put("event_id","b345e2be-a41b-4757-849d-7b9a26d09e73");
+        json.put("table_reg",5);
+        json.put("status", Status.ACCEPTED.getData());
+        json.put("image_path","C:\\Wedding\\QRCodes\\b345e2be-a41b-4757-849d-7b9a26d09e73\\b345e2be-a41b-4757-849d-7b9a26d09e72");
+        Visitor visitor = mapFromJson(json.toString(),Visitor.class);
+        String result = visitor.getName();
+        assertEquals("testName",result);
     }
 
-    /**
-     * Test of getEvent_id method, of class Visitor.
-     */
     @Test
-    public void testGetEvent_id() {
-        System.out.println("getEvent_id");
-        Visitor instance = new Visitor();
-        String expResult = "";
-        String result = instance.getEvent_id();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetEvent_id() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","b345e2be-a41b-4757-849d-7b9a26d09e72");
+        json.put("name","testName");
+        json.put("event_id","b345e2be-a41b-4757-849d-7b9a26d09e73");
+        json.put("table_reg",5);
+        json.put("status", Status.ACCEPTED.getData());
+        json.put("image_path","C:\\Wedding\\QRCodes\\b345e2be-a41b-4757-849d-7b9a26d09e73\\b345e2be-a41b-4757-849d-7b9a26d09e72");
+        Visitor visitor = mapFromJson(json.toString(),Visitor.class);
+        String result = visitor.getEvent_id();
+        assertEquals("b345e2be-a41b-4757-849d-7b9a26d09e73",result);
     }
 
-    /**
-     * Test of getStatus method, of class Visitor.
-     */
     @Test
-    public void testGetStatus() {
-        System.out.println("getStatus");
-        Visitor instance = new Visitor();
-        String expResult = "";
-        String result = instance.getStatus();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetStatus() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","b345e2be-a41b-4757-849d-7b9a26d09e72");
+        json.put("name","testName");
+        json.put("event_id","b345e2be-a41b-4757-849d-7b9a26d09e73");
+        json.put("table_reg",5);
+        json.put("status", Status.ACCEPTED.getData());
+        json.put("image_path","C:\\Wedding\\QRCodes\\b345e2be-a41b-4757-849d-7b9a26d09e73\\b345e2be-a41b-4757-849d-7b9a26d09e72");
+        Visitor visitor = mapFromJson(json.toString(),Visitor.class);
+        String result = visitor.getStatus();
+        assertEquals(Status.ACCEPTED.getData(),result);
     }
 
-    /**
-     * Test of getTable_reg method, of class Visitor.
-     */
     @Test
-    public void testGetTable_reg() {
-        System.out.println("getTable_reg");
-        Visitor instance = new Visitor();
-        int expResult = 0;
-        int result = instance.getTable_reg();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetTable_reg() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","b345e2be-a41b-4757-849d-7b9a26d09e72");
+        json.put("name","testName");
+        json.put("event_id","b345e2be-a41b-4757-849d-7b9a26d09e73");
+        json.put("table_reg",5);
+        json.put("status", Status.ACCEPTED.getData());
+        json.put("image_path","C:\\Wedding\\QRCodes\\b345e2be-a41b-4757-849d-7b9a26d09e73\\b345e2be-a41b-4757-849d-7b9a26d09e72");
+        Visitor visitor = mapFromJson(json.toString(),Visitor.class);
+        int result = visitor.getTable_reg();
+        assertEquals(5,result);
     }
 
-    /**
-     * Test of getImage_path method, of class Visitor.
-     */
     @Test
-    public void testGetImage_path() {
-        System.out.println("getImage_path");
-        Visitor instance = new Visitor();
-        String expResult = "";
-        String result = instance.getImage_path();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetImage_path() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","b345e2be-a41b-4757-849d-7b9a26d09e72");
+        json.put("name","testName");
+        json.put("event_id","b345e2be-a41b-4757-849d-7b9a26d09e73");
+        json.put("table_reg",5);
+        json.put("status", Status.ACCEPTED.getData());
+        json.put("image_path","C:\\Wedding\\QRCodes\\b345e2be-a41b-4757-849d-7b9a26d09e73\\b345e2be-a41b-4757-849d-7b9a26d09e72");
+        Visitor visitor = mapFromJson(json.toString(),Visitor.class);
+        String result = visitor.getImage_path();
+        assertEquals("C:\\Wedding\\QRCodes\\b345e2be-a41b-4757-849d-7b9a26d09e73\\b345e2be-a41b-4757-849d-7b9a26d09e72",result);
     }
 
-    /**
-     * Test of setStatus method, of class Visitor.
-     */
     @Test
-    public void testSetStatus() {
-        System.out.println("setStatus");
-        String status = "";
-        Visitor instance = new Visitor();
-        instance.setStatus(status);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testSetStatus() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","b345e2be-a41b-4757-849d-7b9a26d09e72");
+        json.put("name","testName");
+        json.put("event_id","b345e2be-a41b-4757-849d-7b9a26d09e73");
+        json.put("table_reg",5);
+        json.put("status", Status.ACCEPTED.getData());
+        json.put("image_path","C:\\Wedding\\QRCodes\\b345e2be-a41b-4757-849d-7b9a26d09e73\\b345e2be-a41b-4757-849d-7b9a26d09e72");
+        Visitor visitor = mapFromJson(json.toString(),Visitor.class);
+        visitor.setStatus(Status.PENDING.getData());
+        assertEquals(Status.PENDING.getData(),visitor.getStatus());
     }
 
-    /**
-     * Test of toJson method, of class Visitor.
-     */
     @Test
-    public void testToJson() {
-        System.out.println("toJson");
-        Visitor instance = new Visitor();
-        JSONObject expResult = null;
-        JSONObject result = instance.toJson();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testToJson() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","b345e2be-a41b-4757-849d-7b9a26d09e72");
+        json.put("name","testName");
+        json.put("event_id","b345e2be-a41b-4757-849d-7b9a26d09e73");
+        json.put("table_reg",5);
+        json.put("status", Status.ACCEPTED.getData());
+        json.put("image_path","C:\\Wedding\\QRCodes\\b345e2be-a41b-4757-849d-7b9a26d09e73\\b345e2be-a41b-4757-849d-7b9a26d09e72");
+        Visitor visitor = mapFromJson(json.toString(),Visitor.class);
+        JSONObject result = visitor.toJson();
+        assertEquals(json,result);
     }
-    
 }
