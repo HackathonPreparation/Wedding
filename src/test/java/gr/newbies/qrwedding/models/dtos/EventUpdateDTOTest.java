@@ -1,17 +1,20 @@
 package gr.newbies.qrwedding.models.dtos;
 
+import gr.newbies.qrwedding.AbstractControllerTest;
+import org.json.simple.JSONObject;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
-/**
- *
- * @author SoUlKeePeR
- */
-public class EventUpdateDTOTest {
+@WebAppConfiguration
+public class EventUpdateDTOTest extends AbstractControllerTest{
     
     public EventUpdateDTOTest() {
     }
@@ -32,60 +35,51 @@ public class EventUpdateDTOTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getUuid method, of class EventUpdateDTO.
-     */
     @Test
-    public void testGetUuid() {
-        System.out.println("getUuid");
-        EventUpdateDTO instance = new EventUpdateDTO();
-        String expResult = "";
-        String result = instance.getUuid();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetUuid() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","9c02adda-3e69-436f-85d8-17326dc5655a");
+        json.put("comment","testComment");
+        json.put("name","testName");
+        json.put("seats",5);
+        EventUpdateDTO eventUpdateDTO = mapFromJson(json.toString(),EventUpdateDTO.class);
+        String result = eventUpdateDTO.getUuid();
+        assertEquals("9c02adda-3e69-436f-85d8-17326dc5655a",result);
     }
 
-    /**
-     * Test of getName method, of class EventUpdateDTO.
-     */
     @Test
-    public void testGetName() {
-        System.out.println("getName");
-        EventUpdateDTO instance = new EventUpdateDTO();
-        String expResult = "";
-        String result = instance.getName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetName() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","9c02adda-3e69-436f-85d8-17326dc5655a");
+        json.put("comment","testComment");
+        json.put("name","testName");
+        json.put("seats",5);
+        EventUpdateDTO eventUpdateDTO = mapFromJson(json.toString(),EventUpdateDTO.class);
+        String result = eventUpdateDTO.getName();
+        assertEquals("testName",result);
     }
 
-    /**
-     * Test of getComment method, of class EventUpdateDTO.
-     */
     @Test
-    public void testGetComment() {
-        System.out.println("getComment");
-        EventUpdateDTO instance = new EventUpdateDTO();
-        String expResult = "";
-        String result = instance.getComment();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetComment() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","9c02adda-3e69-436f-85d8-17326dc5655a");
+        json.put("comment","testComment");
+        json.put("name","testName");
+        json.put("seats",5);
+        EventUpdateDTO eventUpdateDTO = mapFromJson(json.toString(),EventUpdateDTO.class);
+        String result = eventUpdateDTO.getComment();
+        assertEquals("testComment",result);
     }
 
-    /**
-     * Test of getSeats method, of class EventUpdateDTO.
-     */
     @Test
-    public void testGetSeats() {
-        System.out.println("getSeats");
-        EventUpdateDTO instance = new EventUpdateDTO();
-        int expResult = 0;
-        int result = instance.getSeats();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetSeats() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("uuid","9c02adda-3e69-436f-85d8-17326dc5655a");
+        json.put("comment","testComment");
+        json.put("name","testName");
+        json.put("seats",5);
+        EventUpdateDTO eventUpdateDTO = mapFromJson(json.toString(),EventUpdateDTO.class);
+        int result = eventUpdateDTO.getSeats();
+        assertEquals(5,result);
     }
-    
 }

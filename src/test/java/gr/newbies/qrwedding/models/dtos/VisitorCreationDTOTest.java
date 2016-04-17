@@ -1,17 +1,20 @@
 package gr.newbies.qrwedding.models.dtos;
 
+import gr.newbies.qrwedding.AbstractControllerTest;
+import org.json.simple.JSONObject;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
-/**
- *
- * @author SoUlKeePeR
- */
-public class VisitorCreationDTOTest {
+@WebAppConfiguration
+public class VisitorCreationDTOTest extends AbstractControllerTest{
     
     public VisitorCreationDTOTest() {
     }
@@ -32,32 +35,23 @@ public class VisitorCreationDTOTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getName method, of class VisitorCreationDTO.
-     */
     @Test
-    public void testGetName() {
-        System.out.println("getName");
-        VisitorCreationDTO instance = new VisitorCreationDTO();
-        String expResult = "";
-        String result = instance.getName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetName() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("eventUUID","9c02adda-3e69-436f-85d8-17326dc5655a");
+        json.put("name","testName");
+        VisitorCreationDTO visitorCreationDTO = mapFromJson(json.toString(),VisitorCreationDTO.class);
+        String result = visitorCreationDTO.getEventUUID();
+        assertEquals("9c02adda-3e69-436f-85d8-17326dc5655a",result);
     }
 
-    /**
-     * Test of getEventUUID method, of class VisitorCreationDTO.
-     */
     @Test
-    public void testGetEventUUID() {
-        System.out.println("getEventUUID");
-        VisitorCreationDTO instance = new VisitorCreationDTO();
-        String expResult = "";
-        String result = instance.getEventUUID();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetEventUUID() throws IOException {
+        JSONObject json = new JSONObject();
+        json.put("eventUUID","9c02adda-3e69-436f-85d8-17326dc5655a");
+        json.put("name","testName");
+        VisitorCreationDTO visitorCreationDTO = mapFromJson(json.toString(),VisitorCreationDTO.class);
+        String result = visitorCreationDTO.getName();
+        assertEquals("testName",result);
     }
-    
 }
