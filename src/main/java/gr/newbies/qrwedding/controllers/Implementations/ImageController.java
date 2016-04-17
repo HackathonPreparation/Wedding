@@ -17,10 +17,8 @@ public class ImageController extends BaseController{
     
     @RequestMapping(value = "/{uuid_ev:^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}}" +
         "/{uuid_vis:[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}",method = RequestMethod.GET)
-    public @ResponseBody byte[] getImage(@PathVariable("uuid") String uuid)
+    public @ResponseBody byte[] getImage(@PathVariable("uuid_ev") String uuid_ev, @PathVariable("uuid_vis") String uuid_vis)
             throws IOException{
-        String uuid_ev = uuid.split("/")[0];
-        String uuid_vis = uuid.split("/")[1];
         String str = ProgPaths.IMAGES_OUTPUT_FOLDER.getData(uuid_ev, uuid_vis, "\\");
         File f = new File(str);
         if(!f.exists()){
