@@ -22,7 +22,8 @@ public class QRGenerator {
         pathGenerator(UUID_Event);
         
         String filePath = ProgPaths.IMAGES_OUTPUT_FOLDER
-                .getData(UUID_Event,UUID_Visitor,"\\");
+                .getData(UUID_Event,UUID_Visitor,"\\")
+                ;
         String charset = "UTF-8"; 
         Map hintMap = new HashMap();
         hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
@@ -50,6 +51,7 @@ public class QRGenerator {
     private void createQRCode(String qrCodeData, String filePath, 
             String charset, Map hintMap, int qrCodeheight, int qrCodewidth)
                             throws WriterException, IOException {
+        filePath = filePath + ".png";
         BitMatrix matrix = new MultiFormatWriter().encode( new String(
                 qrCodeData.getBytes(charset), charset), BarcodeFormat.QR_CODE,
                 qrCodewidth, qrCodeheight, hintMap);
