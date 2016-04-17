@@ -1,6 +1,7 @@
 package gr.newbies.qrwedding.services.implementations;
 
 import gr.newbies.qrwedding.extras.QRGenerator;
+import gr.newbies.qrwedding.extras.Status;
 import gr.newbies.qrwedding.models.dtos.VisitorCreationDTO;
 import gr.newbies.qrwedding.models.entities.Visitor;
 import gr.newbies.qrwedding.repositories.VisitorRepository;
@@ -38,6 +39,10 @@ public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
         return ((VisitorRepository)repository).findVisitorByUUID(uuid);
     }
     
+    public Visitor updateStatus(String uuid){
+        return ((VisitorRepository)repository).updateVisitorByUUID(Status.ACCEPTED.getData(), uuid);
+    }
+
     @Override
     public JSONArray findVisitorsByEventId(String uuid){
         JSONArray jsonArray = new JSONArray();

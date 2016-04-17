@@ -36,6 +36,18 @@ public class EventController extends BaseController{
         }
     }
 
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    public boolean cancelInvitation(@RequestParam(name = "toDelete") String toDelete){
+        visitorService.delete(visitorService.findOne(toDelete));
+        return true;
+    }
+    
+    @RequestMapping(value ="/cancelEvent", method = RequestMethod.DELETE)
+    public boolean cancelEvent(@RequestParam(name = "toDelete") String toDelete){
+        eventService.delete(eventService.findOne(toDelete));
+        return true;
+    }
+    
     @RequestMapping(value = "/edit",method = RequestMethod.PUT)
     public ResponseEntity EditEvent (@RequestBody EventUpdateDTO dto){
         boolean response = eventService.update(dto);

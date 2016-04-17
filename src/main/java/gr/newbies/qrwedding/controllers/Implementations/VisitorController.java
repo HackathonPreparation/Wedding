@@ -27,9 +27,7 @@ public class VisitorController extends BaseController{
         else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-    }
-
-    
+    }    
     
     @RequestMapping(value = "/{uuid:^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}",method = RequestMethod.GET)
     public HttpEntity<JSONObject> GetEvent (@PathVariable String uuid){
@@ -40,12 +38,10 @@ public class VisitorController extends BaseController{
         JSONObject json = v.toJson();
         return new ResponseEntity<>(json,HttpStatus.OK);
     }
-    
-    
-    @RequestMapping(value = "/accept",method = RequestMethod.PUT)
-    public ResponseEntity updateVis (@RequestParam(name = "uuid") String uuid){
-      
-            return new ResponseEntity(HttpStatus.OK);
         
+    @RequestMapping(value = "/accept",method = RequestMethod.PUT)
+    public ResponseEntity<Visitor> updateVis (@RequestParam(name = "uuid") String uuid){
+        Visitor v = visitorService.updateStatus(uuid);
+        return new ResponseEntity<>(v, HttpStatus.OK);        
     }
 }

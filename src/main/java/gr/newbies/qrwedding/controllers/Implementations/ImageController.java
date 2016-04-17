@@ -19,11 +19,11 @@ public class ImageController extends BaseController{
         "/{uuid_vis:[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}",method = RequestMethod.GET)
     public @ResponseBody byte[] getImage(@PathVariable("uuid_ev") String uuid_ev, @PathVariable("uuid_vis") String uuid_vis)
             throws IOException{
-        String str = ProgPaths.IMAGES_OUTPUT_FOLDER.getData(uuid_ev, uuid_vis + ".png", "\\");
+        String str = ProgPaths.IMAGES_OUTPUT_FOLDER.getData(uuid_ev, uuid_vis , "\\");
         File f = new File(str + ".png");
         if(!f.exists()){
             return Files.readAllBytes(
-                    new File(ProgPaths.IMAGES_DEFAULT.getData() + ".png").toPath()); 
+                    new File(ProgPaths.IMAGES_DEFAULT.getData()).toPath()); 
         } 
         return Files.readAllBytes(f.toPath());
     }

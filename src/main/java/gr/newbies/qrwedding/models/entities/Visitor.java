@@ -64,6 +64,10 @@ public class Visitor extends GenericModel implements Serializable {
     public String getImage_path() {
         return image_path;
     }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
     
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
