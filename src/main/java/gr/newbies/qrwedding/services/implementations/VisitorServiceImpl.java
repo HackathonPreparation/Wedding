@@ -39,8 +39,9 @@ public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
         return ((VisitorRepository)repository).findVisitorByUUID(uuid);
     }
     
-    public Visitor updateStatus(String uuid){
-        return ((VisitorRepository)repository).updateVisitorByUUID(Status.ACCEPTED.getData(), uuid);
+    @Override
+    public Visitor updateStatus(String uuid, Status status){
+        return ((VisitorRepository)repository).updateVisitorByUUID(status.getData(), uuid);
     }
 
     @Override
@@ -52,5 +53,10 @@ public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
             jsonArray.add(json);
         }
         return jsonArray;
+    }
+
+    @Override
+    public List<Visitor> findAllAccepted(String uuid_ev) {
+        return ((VisitorRepository)repository).findAcceptedVisitorsByEventUUID;
     }
 }

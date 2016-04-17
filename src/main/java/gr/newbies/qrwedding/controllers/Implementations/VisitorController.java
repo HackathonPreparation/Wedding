@@ -1,6 +1,7 @@
 package gr.newbies.qrwedding.controllers.Implementations;
 
 import gr.newbies.qrwedding.controllers.BaseController;
+import gr.newbies.qrwedding.extras.Status;
 import gr.newbies.qrwedding.models.dtos.VisitorCreationDTO;
 import gr.newbies.qrwedding.models.entities.Visitor;
 import gr.newbies.qrwedding.services.VisitorService;
@@ -40,8 +41,14 @@ public class VisitorController extends BaseController{
     }
         
     @RequestMapping(value = "/accept",method = RequestMethod.PUT)
-    public ResponseEntity<Visitor> updateVis (@RequestParam(name = "uuid") String uuid){
-        Visitor v = visitorService.updateStatus(uuid);
+    public ResponseEntity<Visitor> acceptVis (@RequestParam(name = "uuid") String uuid){
+        Visitor v = visitorService.updateStatus(uuid, Status.ACCEPTED);
+        return new ResponseEntity<>(v, HttpStatus.OK);        
+    }
+    
+    @RequestMapping(value = "/decline",method = RequestMethod.PUT)
+    public ResponseEntity<Visitor> declineVis (@RequestParam(name = "uuid") String uuid){
+        Visitor v = visitorService.updateStatus(uuid, Status.DECLINDED);
         return new ResponseEntity<>(v, HttpStatus.OK);        
     }
 }
