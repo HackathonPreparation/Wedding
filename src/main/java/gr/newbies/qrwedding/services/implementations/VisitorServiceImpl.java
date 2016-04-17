@@ -57,6 +57,6 @@ public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
 
     @Override
     public List<Visitor> findAllAccepted(String uuid_ev) {
-        return ((VisitorRepository)repository).findAcceptedVisitorsByEventUUID;
+        return ((VisitorRepository)repository).findAcceptedVisitorsByEventUUID(uuid_ev, Status.ACCEPTED.getData());
     }
 }
