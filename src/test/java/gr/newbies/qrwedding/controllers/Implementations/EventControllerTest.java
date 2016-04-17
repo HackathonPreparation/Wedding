@@ -11,17 +11,21 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import static org.mockito.Matchers.any;
-import org.mockito.Mock;
+import org.mockito.*;
 import org.junit.*;
 
 import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 @Transactional
+@WebAppConfiguration
+@ActiveProfiles({"mixalis", "mixalis"})
 public class EventControllerTest extends AbstractControllerTest {
     String uri;
     
@@ -52,7 +56,7 @@ public class EventControllerTest extends AbstractControllerTest {
         
         super.setUp(controller);
         
-        uri="/event";
+        uri="http://localhost:8080/event";
     }
     
     @After
@@ -65,23 +69,26 @@ public class EventControllerTest extends AbstractControllerTest {
  
     @Test
     public void testEditEventSuccess() throws Exception  {
-//        json.put("seats","2");
-//        json.put("uuid","12345678-1245-1245-2365-123456789145");
-//        json.put("name", "Kwnstantina");
-//        json.put("comment", "ufwiefbwubw");
-//        
-//        when(eventService.update(any())).thenReturn(true);
-//        
-//        MvcResult result = mvc.perform(MockMvcRequestBuilders.put(uri + "/edit")
-//                .content(json.toJSONString()))
-//                .andReturn();
-//        
-//        String content = result.getResponse().getContentAsString();
-//        int status = result.getResponse().getStatus();
-//        
-//        verify(eventService,times(1)).update(any());
-//        
-//        Assert.assertEquals("Failure expected OK",200 ,HttpStatus.OK);
+        json.put("seats","2");
+        json.put("uuid","12345678-1245-1245-2365-123456789145");
+        json.put("name", "Kwnstantina");
+        json.put("comment", "ufwiefbwubw");
+        
+        System.out.println(json.toJSONString());
+        
+        when(eventService.update(any())).thenReturn(true);
+        
+        MvcResult result = mvc.perform(MockMvcRequestBuilders.put(uri + "/edit")
+                .content(json.toJSONString())
+                .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        
+        String content = result.getResponse().getContentAsString();
+        int status = result.getResponse().getStatus();
+        
+        verify(eventService,times(1)).update(any());
+        
+        Assert.assertEquals("Failure expected OK",status ,200);
     }
     
 }

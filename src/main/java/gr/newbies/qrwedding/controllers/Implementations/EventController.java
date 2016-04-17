@@ -52,6 +52,8 @@ public class EventController extends BaseController{
     @RequestMapping(value = "/edit",method = RequestMethod.PUT)
     public ResponseEntity EditEvent (@RequestBody EventUpdateDTO dto){
         boolean response = eventService.update(dto);
+        System.out.println(response + " <- ");
+        System.out.println(dto.toString());
         if (response){
             return new ResponseEntity(HttpStatus.OK);
         }
