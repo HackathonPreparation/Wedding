@@ -38,13 +38,12 @@ public class EventController extends BaseController{
         }
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public boolean cancelInvitation(@PathVariable String id){
-        visitorService.delete(visitorService.findOne(id));
-        return true;
+        return visitorService.delete(visitorService.findOne(id));         
     }
     
-    @RequestMapping(value ="/cancelEvent/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value ="/cancelEvent/{id}", method = RequestMethod.GET)
     public boolean cancelEvent(@PathVariable String id){
         return eventService.delete(eventService.findOne(id));
     }
