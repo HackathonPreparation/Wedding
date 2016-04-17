@@ -5,7 +5,6 @@ import gr.newbies.qrwedding.models.dtos.VisitorCreationDTO;
 import org.json.simple.JSONObject;
 
 import java.io.Serializable;
-import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
@@ -15,7 +14,8 @@ import javax.persistence.Table;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Visitor.findVisitorByUUID", query = "SELECT p FROM Visitor p WHERE p.uuid = ?1"),
-    @NamedQuery(name = "Visitor.findVisitorsByEventUUID", query = "SELECT p FROM Visitor p WHERE p.event_id = ?1")
+    @NamedQuery(name = "Visitor.findVisitorsByEventUUID", query = "SELECT p FROM Visitor p WHERE p.event_id = ?1"),
+    @NamedQuery(name = "Visitor.findAcceptedVisitorsByEventUUID", query = "SELECT p FROM Visitor p WHERE p.event_id = ?1 AND p.status = ?2")
 })
 @Table(name = "visitors")
 public class Visitor extends GenericModel implements Serializable {
@@ -29,19 +29,21 @@ public class Visitor extends GenericModel implements Serializable {
     @Column(name = "status")
     private String status;
     
-    @Column(name ="table_reg")
+    @Column(name = "table_reg")
     private int table_reg;
 
+    @Column(name = "image_path")
+    private String image_path;
+    
     public Visitor() {
     }
 
-    //TODO QR IMAGE PATH
-
-    public Visitor(VisitorCreationDTO visitorCreationDTO){
-        uuid = UUID.randomUUID().toString();
+    public Visitor(VisitorCreationDTO visitorCreationDTO,String uuid, String image_path){
+        this.uuid = uuid;
         name = visitorCreationDTO.getName();
         event_id = visitorCreationDTO.getEventUUID();
-        //TODO create QR here
+        status = Status.PENDING.getData();
+        this.image_path = image_path;
     }
 
     public String getName() {
@@ -60,6 +62,14 @@ public class Visitor extends GenericModel implements Serializable {
         return table_reg;
     }
 
+    public String getImage_path() {
+        return image_path;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("uuid",uuid);
@@ -67,6 +77,7 @@ public class Visitor extends GenericModel implements Serializable {
         json.put("event_id",event_id);
         json.put("status",status);
         json.put("table_reg",table_reg);
+        json.put("image_path",image_path);
         return json;
     }
 }

@@ -5,6 +5,7 @@ import gr.newbies.qrwedding.extras.Status;
 import gr.newbies.qrwedding.models.dtos.VisitorCreationDTO;
 import gr.newbies.qrwedding.models.entities.Visitor;
 import gr.newbies.qrwedding.services.VisitorService;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -23,25 +24,36 @@ public class VisitorController extends BaseController{
         Visitor v = visitorService.create(visitorCreationDTO);
         if (v != null){
             return new ResponseEntity<>(v,HttpStatus.OK);
-        }
-        else {
+        } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-    }
-
+    }    
+    
     @RequestMapping(value = "/{uuid:^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}",method = RequestMethod.GET)
-    public HttpEntity<String> GetEvent (@PathVariable String uuid){
+    public HttpEntity<JSONObject> GetEvent (@PathVariable String uuid){
         Visitor v = visitorService.findOne(uuid);
-        if (v != null){
+        if (v == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
-//        Status status  = v.getStatus();
-//        if (status == Status.PENDING || status == Status.DECLINDED){
-//            return new ResponseEntity<>(status.toString(),HttpStatus.OK);
-//        }
-//        else {
-//            return new ResponseEntity<>(v.toString(),HttpStatus.OK);
-//        }
+        JSONObject json = v.toJson();
+        return new ResponseEntity<>(json,HttpStatus.OK);
+    }
+        
+    @RequestMapping(value = "/accept/{uuid}",method = RequestMethod.PUT)
+    public ResponseEntity<Visitor> acceptVis (@PathVariable String uuid){
+        Visitor v = visitorService.updateStatus(uuid, Status.ACCEPTED);
+        if (v == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(v, HttpStatus.OK);        
+    }
+    
+    @RequestMapping(value = "/decline/{uuid}",method = RequestMethod.PUT)
+    public ResponseEntity<Visitor> declineVis (@PathVariable String uuid){
+        Visitor v = visitorService.updateStatus(uuid, Status.DECLINDED);
+        if (v == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(v, HttpStatus.OK);        
     }
 }
