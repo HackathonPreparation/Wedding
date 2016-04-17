@@ -32,47 +32,5 @@ public class EventRepositoryTest {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of findByUuid method, of class EventRepository.
-     */
-    @Test
-    public void testFindByUuid() {
-        System.out.println("findByUuid");
-        String uuid = "";
-        EventRepository instance = new EventRepositoryImpl();
-        Event expResult = null;
-        Event result = instance.findByUuid(uuid);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of updateEventByUUID method, of class EventRepository.
-     */
-    @Test
-    public void testUpdateEventByUUID() {
-        System.out.println("updateEventByUUID");
-        int tables_count = 0;
-        int tables_left = 0;
-        String name = "";
-        String comment = "";
-        String uuid = "";
-        EventRepository instance = new EventRepositoryImpl();
-        instance.updateEventByUUID(tables_count, tables_left, name, comment, uuid);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    public class EventRepositoryImpl implements EventRepository {
-
-        public Event findByUuid(String uuid) {
-            return null;
-        }
-
-        public void updateEventByUUID(int tables_count, int tables_left, String name, String comment, String uuid) {
-        }
-    }
-    
+   
 }
