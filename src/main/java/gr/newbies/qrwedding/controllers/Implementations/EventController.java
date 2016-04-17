@@ -78,7 +78,6 @@ public class EventController extends BaseController{
         JSONObject json;
         json = e.toJson();
         json.put("visitors",jsonArray);
-        System.out.println(json.toString());
         return new ResponseEntity<>(json,HttpStatus.OK);
     }
     
@@ -94,7 +93,6 @@ public class EventController extends BaseController{
         JSONObject json;
         json = e.toJson();
         json.put("visitors",jsonArray);
-        System.out.println(json.toString());
         return new ResponseEntity<>(json,HttpStatus.OK);
     }
 }
