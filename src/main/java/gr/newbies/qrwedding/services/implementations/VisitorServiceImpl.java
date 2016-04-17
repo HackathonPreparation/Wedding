@@ -23,6 +23,8 @@ public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
     
     @Override
     public Visitor create(VisitorCreationDTO visitorCreationDTO) {
+        System.out.println(visitorCreationDTO.getEventUUID());
+        System.out.println(visitorCreationDTO.getName());
         return super.create(new Visitor(visitorCreationDTO));
     }
 

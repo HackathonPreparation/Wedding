@@ -6,6 +6,5 @@ import org.json.simple.JSONArray;
 
 public interface VisitorService extends GeneralService<Visitor>{
     Visitor create(VisitorCreationDTO visitorCreationDTO);
-
     JSONArray findVisitorsByEventId(String uuid);
 }
