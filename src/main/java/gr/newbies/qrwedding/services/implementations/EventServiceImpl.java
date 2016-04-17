@@ -6,12 +6,15 @@ import gr.newbies.qrwedding.models.entities.Event;
 import gr.newbies.qrwedding.repositories.EventRepository;
 import gr.newbies.qrwedding.services.EventService;
 import gr.newbies.qrwedding.services.GeneralServiceImpl;
+import gr.newbies.qrwedding.services.tools.FileWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EventServiceImpl extends GeneralServiceImpl<Event> 
         implements EventService{
+    
+    FileWorker FW = new FileWorker();
     
     @Autowired
     EventServiceImpl(EventRepository eventRepository){
@@ -36,6 +39,7 @@ public class EventServiceImpl extends GeneralServiceImpl<Event>
         if (e == null) {
             return false;
         }
+        FW.deleteFolder(e.getUuid());
         return super.delete(e);
     }
     
