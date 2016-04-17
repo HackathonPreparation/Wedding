@@ -32,20 +32,4 @@ public class QRGeneratorTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of generateQR method, of class QRGenerator.
-     */
-    @Test
-    public void testGenerateQR() {
-        System.out.println("generateQR");
-        String UUID_Visitor = "";
-        String UUID_Event = "";
-        QRGenerator instance = new QRGenerator();
-        String expResult = "";
-        String result = instance.generateQR(UUID_Visitor, UUID_Event);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }
