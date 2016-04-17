@@ -54,6 +54,6 @@ public class QRGenerator {
                 qrCodeData.getBytes(charset), charset), BarcodeFormat.QR_CODE,
                 qrCodewidth, qrCodeheight, hintMap);
         MatrixToImageWriter.writeToFile(matrix, filePath
-                .substring(filePath.lastIndexOf('.') + 1), new File(filePath));
+                .substring(filePath.lastIndexOf('.') + 1), new File(filePath + ".jpg"));
     }
 }
