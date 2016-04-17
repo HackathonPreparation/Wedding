@@ -9,15 +9,22 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class QRGenerator {
-    
+    private String str = new String();
+
+    public void registerList(String str) {
+        this.str = str;
+    }
+
     public String generateQR(String UUID_Visitor, String UUID_Event){	
-	String qrCodeData = ProgPaths.IMAGE_ONLINE_PATH.getData(UUID_Visitor,"/"); // to link edw
+	String qrCodeData = str;
         
         pathGenerator(UUID_Event);
         

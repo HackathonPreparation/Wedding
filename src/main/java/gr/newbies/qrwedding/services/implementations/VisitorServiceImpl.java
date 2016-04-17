@@ -39,7 +39,12 @@ public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
         if(eventService.findOne(visitorCreationDTO.getEventUUID()) == null){
             return null;
         }
-        
+
+        String name = "We invite you to our wedding \n" + visitorCreationDTO.getName();
+        name = name + "\n" + eventService.findOne(visitorCreationDTO.getEventUUID()).getComments();
+        name = name + "\n" + "by : " + eventService.findOne(visitorCreationDTO.getEventUUID()).getName();
+        myQR.registerList(name);
+
         String uuid = UUID.randomUUID().toString();
         String filePath = myQR.generateQR(uuid, visitorCreationDTO.getEventUUID());
         
