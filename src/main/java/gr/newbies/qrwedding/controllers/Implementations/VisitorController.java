@@ -29,6 +29,8 @@ public class VisitorController extends BaseController{
         }
     }
 
+    
+    
     @RequestMapping(value = "/{uuid:^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$}",method = RequestMethod.GET)
     public HttpEntity<JSONObject> GetEvent (@PathVariable String uuid){
         Visitor v = visitorService.findOne(uuid);
@@ -37,5 +39,13 @@ public class VisitorController extends BaseController{
         }
         JSONObject json = v.toJson();
         return new ResponseEntity<>(json,HttpStatus.OK);
+    }
+    
+    
+    @RequestMapping(value = "/accept",method = RequestMethod.PUT)
+    public ResponseEntity updateVis (@RequestParam(name = "uuid") String uuid){
+      
+            return new ResponseEntity(HttpStatus.OK);
+        
     }
 }

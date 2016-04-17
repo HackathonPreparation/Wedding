@@ -1,7 +1,7 @@
 package gr.newbies.qrwedding.extras;
 
 public enum ProgPaths {
-    IMAGE_ONLINE_PATH("http://83.212.105.54/visitor/"),
+    IMAGE_ONLINE_PATH("http://83.212.105.54/visitor"),
     IMAGES_DEFAULT("C:\\Wedding\\QRCodes\\default.jpg"),
     IMAGES_OUTPUT_FOLDER("C:\\Wedding\\QRCodes");
     
