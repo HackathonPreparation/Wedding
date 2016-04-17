@@ -16,7 +16,6 @@ import org.junit.*;
 
 import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.*;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -73,9 +72,7 @@ public class EventControllerTest extends AbstractControllerTest {
         json.put("uuid","12345678-1245-1245-2365-123456789145");
         json.put("name", "Kwnstantina");
         json.put("comment", "ufwiefbwubw");
-        
-        System.out.println(json.toJSONString());
-        
+                
         when(eventService.update(any())).thenReturn(true);
         
         MvcResult result = mvc.perform(MockMvcRequestBuilders.put(uri + "/edit")
