@@ -20,20 +20,14 @@ public abstract class GeneralServiceImpl<E>
     
     @Transactional
     @Override
-    public E findOne(String uuid) {
-        return (E)repository.findOne(uuid);
-    }
-
-    @Transactional
-    @Override
     public List<E> findAll() {
         return repository.findAll();
     }
 
     @Transactional
     @Override
-    public boolean delete(String uuid) {
-        repository.delete(uuid);
+    public boolean delete(E entity) {
+        repository.delete(entity);
         return true;
     }
 }

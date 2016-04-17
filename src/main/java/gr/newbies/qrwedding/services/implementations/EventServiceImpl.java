@@ -24,6 +24,11 @@ public class EventServiceImpl extends GeneralServiceImpl<Event>
     }
 
     @Override
+    public Event findOne(String uuid) {
+        return ((EventRepository)repository).findByUuid(uuid);
+    }
+    
+    @Override
     public boolean update(EventUpdateDTO eventUpdateDTO){
         ((EventRepository)repository).updateEventByUUID(eventUpdateDTO.getSeats(),
                 eventUpdateDTO.getSeats(),eventUpdateDTO.getName(),

@@ -10,5 +10,5 @@ public interface GeneralService<E> {
     
     List<E> findAll();
 
-    boolean delete(String uuid);
+    boolean delete(E entity);
 }

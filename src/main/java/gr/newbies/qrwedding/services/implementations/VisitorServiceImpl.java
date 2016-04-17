@@ -1,5 +1,6 @@
 package gr.newbies.qrwedding.services.implementations;
 
+import gr.newbies.qrwedding.extras.QRGenerator;
 import gr.newbies.qrwedding.models.dtos.VisitorCreationDTO;
 import gr.newbies.qrwedding.models.entities.Visitor;
 import gr.newbies.qrwedding.repositories.VisitorRepository;
@@ -11,10 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
         implements VisitorService{
+    
+    QRGenerator myQR = new QRGenerator();
     
     @Autowired
     VisitorServiceImpl(VisitorRepository visitorRepository){
@@ -22,12 +26,18 @@ public class VisitorServiceImpl extends GeneralServiceImpl<Visitor>
     }   
     
     @Override
-    public Visitor create(VisitorCreationDTO visitorCreationDTO) {
-        System.out.println(visitorCreationDTO.getEventUUID());
-        System.out.println(visitorCreationDTO.getName());
-        return super.create(new Visitor(visitorCreationDTO));
+    public Visitor create(VisitorCreationDTO visitorCreationDTO){
+        String uuid = UUID.randomUUID().toString();
+        String filePath = myQR.generateQR(uuid, visitorCreationDTO.getEventUUID());
+        
+        return super.create(new Visitor(visitorCreationDTO,uuid,filePath));
     }
-
+    
+    @Override
+    public Visitor findOne(String uuid){ //ignores superclass findOne because its not needed here
+        return ((VisitorRepository)repository).findVisitorByUUID(uuid);
+    }
+    
     @Override
     public JSONArray findVisitorsByEventId(String uuid){
         JSONArray jsonArray = new JSONArray();

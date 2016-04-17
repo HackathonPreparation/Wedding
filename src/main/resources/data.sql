@@ -1,8 +1,8 @@
 DROP TABLE "visitors";
 DROP TABLE "events";
-DROP TYPE status;
+-- DROP TYPE status;
 
-CREATE TYPE status AS ENUM ('PENDING','ACCEPTED','DECLINED');
+-- CREATE TYPE status AS ENUM ('PENDING','ACCEPTED','DECLINED');
 
 CREATE TABLE "events" (
     "uuid" text NOT NULL,
@@ -17,8 +17,9 @@ CREATE TABLE "visitors" (
     "uuid" text NOT NULL,
     "event_id" text NOT NULL,
     "name" text NOT NULL,
-    "status" status NOT NULL DEFAULT 'PENDING',
-    "table_reg" int CHECK (table_reg > 0),
+    "status" text NOT NULL DEFAULT 'PENDING',
+    "table_reg" int ,
+    "image_path" text NOT NULL,
     CONSTRAINT pk_visitors PRIMARY KEY (uuid)
 );
 
